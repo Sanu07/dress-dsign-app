@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.auth.JWTDBUserDetailsService;
 import com.fashion.exceptions.AuthenticationException;
 import com.fashion.model.JWTAuthTokenRequest;
 import com.fashion.model.JWTAuthTokenResponse;
 import com.fashion.model.User;
+import com.fashion.service.impl.JWTDBUserDetailsServiceImpl;
 import com.fashion.util.JWTTokenUtil;
 
 @RestController
@@ -41,20 +41,24 @@ public class JWTAuthController {
 	private JWTTokenUtil jwtTokenUtil;
 
 	@Autowired
-	private JWTDBUserDetailsService jwtUserDetailsService;
+	private JWTDBUserDetailsServiceImpl jwtUserDetailsService;
 
 	@RequestMapping(value = "${jwt.get.token.uri}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTAuthTokenRequest authenticationRequest)
 			throws AuthenticationException {
 
-		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-		UserDetails userDetails = jwtUserDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
-
-		final String token = jwtTokenUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok(new JWTAuthTokenResponse(token));
+		return ResponseEntity.ok("success");
+		/*
+		 * authenticate(authenticationRequest.getUsername(),
+		 * authenticationRequest.getPassword());
+		 * 
+		 * UserDetails userDetails = jwtUserDetailsService
+		 * .loadUserByUsername(authenticationRequest.getUsername());
+		 * 
+		 * final String token = jwtTokenUtil.generateToken(userDetails);
+		 * 
+		 * return ResponseEntity.ok(new JWTAuthTokenResponse(token));
+		 */
 	}
 
 	@RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)

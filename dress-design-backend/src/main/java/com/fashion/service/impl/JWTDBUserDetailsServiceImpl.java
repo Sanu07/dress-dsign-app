@@ -1,4 +1,4 @@
-package com.fashion.auth;
+package com.fashion.service.impl;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import com.fashion.dao.LoginRegistrationDao;
 import com.fashion.model.User;
 
 @Service
-public class JWTDBUserDetailsService implements UserDetailsService {
+public class JWTDBUserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private LoginRegistrationDao userDao;
