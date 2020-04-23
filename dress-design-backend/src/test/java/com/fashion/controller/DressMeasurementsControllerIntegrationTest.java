@@ -23,11 +23,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.fashion.auth.JWTTokenAuthorizationOncePerRequestFilter;
 import com.fashion.auth.JWTUnAuthorizedResponseAuthenticationEntryPoint;
 import com.fashion.model.DressMeasurements;
 import com.fashion.service.DressMeasurementsService;
-import com.fashion.service.impl.JWTDBUserDetailsServiceImpl;
 import com.fashion.util.JWTTokenUtil;
 
 @RunWith(SpringRunner.class)
@@ -73,15 +71,6 @@ public class DressMeasurementsControllerIntegrationTest {
 
 	@Test
 	public void givenMeasurements_whenGetAllMeasurements_thenReturnAllMeasurements() throws Exception {
-		List<DressMeasurements> dressMeasurements = new ArrayList<>();
-		DressMeasurements countOne = new DressMeasurements();
-		countOne.setNeck("Neck-1");
-		countOne.setArmLength("10");
-		DressMeasurements countTwo = new DressMeasurements();
-		countTwo.setNeck("Neck-2");
-		countTwo.setArmLength("20");
-		dressMeasurements.add(countOne);
-		dressMeasurements.add(countTwo);
 		given(measurementsService.getAllDressMeasurements()).willReturn(dressMeasurements);
 
 		mvc.perform(get("/measurements").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
