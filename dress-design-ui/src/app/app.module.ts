@@ -16,13 +16,21 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthHtppInterceptorService } from './services/auth-service/basic-auth-interceptor.service';
 import { FormsModule } from '@angular/forms';
+import { MeasurementsComponent } from './components/measurements/measurements.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    MeasurementsComponent,
+    PaymentsComponent,
+    CustomersComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserAnimationsModule,
