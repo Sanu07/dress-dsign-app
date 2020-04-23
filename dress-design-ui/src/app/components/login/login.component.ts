@@ -31,6 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   authenticateUser() {
+    if (true) {
+      this.router.navigate(['/dashboard']);
+    }
     this.authService.authenticate(this.loginCredentials.username, this.loginCredentials.password).subscribe(
       (data: AuthToken) => {
         console.log(data.token);

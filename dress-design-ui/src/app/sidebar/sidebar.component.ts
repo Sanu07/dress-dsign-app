@@ -11,6 +11,7 @@ export interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard', icon: 'nc-bank', class: '' },
   { path: '/user', title: 'Admin User Profile', icon: 'nc-single-02', class: '' },
+  { path: '/orders', title: 'Orders', icon: 'nc-pin-3', class: '' },
   { path: '/customers', title: 'Customers', icon: 'nc-diamond', class: '' },
   { path: '/payments', title: 'Payments', icon: 'nc-diamond', class: '' },
   { path: '/icons', title: 'Icons', icon: 'nc-diamond', class: '' },
