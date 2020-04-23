@@ -20,6 +20,7 @@ import { MeasurementsComponent } from './components/measurements/measurements.co
 import { PaymentsComponent } from './components/payments/payments.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
     MeasurementsComponent,
     PaymentsComponent,
     CustomersComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserAnimationsModule,

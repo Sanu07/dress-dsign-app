@@ -8,10 +8,10 @@ import { IconsComponent } from '../../components/icons/icons.component';
 import { MapsComponent } from '../../components/maps/maps.component';
 import { NotificationsComponent } from '../../components/notifications/notifications.component';
 import { UpgradeComponent } from '../../components/upgrade/upgrade.component';
-import { OrdersComponent } from 'app/components/orders/orders.component';
 import { PaymentsComponent } from 'app/components/payments/payments.component';
 import { CustomersComponent } from 'app/components/customers/customers.component';
 import { MeasurementsComponent } from 'app/components/measurements/measurements.component';
+import { OrdersComponent } from 'app/components/orders/orders.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
