@@ -26,10 +26,10 @@ public class Orders {
 	@Column(name = "ORDER_ID")
 	private long id;
 	private String orderNo;
-	private Dress dress;
+	// private Dress dress;
 	private Date orderReceived;
 	private Date estimatedDeliveryDate;
 	private Date orderDelivered;
-	private Payment payment;
-	private Customer customer;
+	// private Payment payment;
+	// private Customer customer;
 }

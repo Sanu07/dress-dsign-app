@@ -3,15 +3,15 @@ package com.fashion.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fashion.dao.MeasurementsDao;
+import com.fashion.dao.DressMeasurementsDao;
 import com.fashion.model.DressMeasurements;
 import com.fashion.service.DressMeasurementsService;
 
 @Service
-public class MeasurementsServiceImpl implements DressMeasurementsService {
+public class DressMeasurementsServiceImpl implements DressMeasurementsService {
 
 	@Autowired
-	MeasurementsDao measurementDao;
+	DressMeasurementsDao measurementDao;
 
 	@Override
 	public DressMeasurements saveDressMeasurements(DressMeasurements measurements) {

@@ -69,7 +69,7 @@ public class DressMeasurements {
 	private String wrist;
 	
 	@Column(name = "V_NECK_OUT")
-	private String vNeckOut;
+	private String vneckOut;
 	
 	@Column(name = "SHOULDER_TO_WAIST")
 	private String shoulderToWaist;

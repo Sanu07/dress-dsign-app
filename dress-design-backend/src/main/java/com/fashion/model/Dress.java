@@ -22,9 +22,10 @@ public class Dress {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "DRESS_ID")
 	private long id;
+	@Column(name = "DRESS_UNIQUE_CODE_NO")
 	private String dressId;
-	private DressMeasurements dressMeasurements;
+	//private DressMeasurements dressMeasurements;
 	private String dressType;
-	private Orders orders;
-	private Customer customer;
+	//private Orders orders;
+	// private Customer customer;
 }
