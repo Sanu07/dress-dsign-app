@@ -88,7 +88,12 @@
                 line-height: 30px;
                 opacity: .7;
             }
-
+            a:hover {
+              color: $dark-color;
+              i {
+                color: $dark-color;
+              }
+            }
             .nav > li > a{
               padding: 5px 8px;
             }

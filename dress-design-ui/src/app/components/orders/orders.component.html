@@ -1,1 +1,35 @@
-<p>orders works!</p>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li *ngFor="let navbarItem of navbarItems" routerLinkActive="active">
+      <button type="button" class="btn btn-outline-default" [ngClass]="{'active' : navbarItem.status}">
+        {{navbarItem.title}}
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="customers" class="tab-pane active" *ngIf="currentDisplay === 'add-customer'">
+      <app-customers></app-customers>
+      <button type="button" class="btn btn-primary" (click)="addCustomer(navbarItems[trackOrdersRouteInfoArray])">Add
+        Customers</button>
+    </div>
+    <div id="orders" class="tab-pane" *ngIf="currentDisplay === 'add-order'">
+      test
+      <button type="button" class="btn btn-primary" (click)="addCustomer(navbarItems[trackOrdersRouteInfoArray])">Add
+        Customers</button>
+    </div>
+    <div id="dress" class="tab-pane" *ngIf="currentDisplay === 'add-dress'">
+      <h3>Menu 2</h3>
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+        aperiam.</p>
+      <button type="button" class="btn btn-primary" (click)="addCustomer(navbarItems[trackOrdersRouteInfoArray])">Add
+        Customers</button>
+    </div>
+    <div id="payments" class="tab-pane" *ngIf="currentDisplay === 'add-payment'">
+      <h3>Menu 3</h3>
+      <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      <button type="button" class="btn btn-primary" (click)="addCustomer(navbarItems[trackOrdersRouteInfoArray])">Add
+        Customers</button>
+    </div>
+  </div>
+</div>
