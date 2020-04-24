@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class DressMeasurements {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "MEASUREMENT_ID")
+	@Column(name = "_ID")
 	private long id;
 	
 	@Column(name = "NECK")
@@ -76,8 +77,8 @@ public class DressMeasurements {
 	
 	@Column(name = "WAIST_TO_ABOVE_KNEE")
 	private String waistToAboveKnee;
-	
-	@Column(name = "TOTAL_AMOUNT")
-	private String totalAmount;
+
+	@OneToOne
+	private Dress dress;
 }
 

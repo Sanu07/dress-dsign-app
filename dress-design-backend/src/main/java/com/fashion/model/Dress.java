@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fashion.enumutil.DressType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,12 +23,20 @@ import lombok.NoArgsConstructor;
 public class Dress {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "DRESS_ID")
+	@Column(name = "_ID")
 	private long id;
-	@Column(name = "DRESS_UNIQUE_CODE_NO")
+	
+	@Column(name = "DRESS_REF_NO")
 	private String dressId;
-	//private DressMeasurements dressMeasurements;
-	private String dressType;
-	//private Orders orders;
-	// private Customer customer;
+	
+	@OneToOne
+	private DressMeasurements dressMeasurements;
+	
+	private DressType dressType;
+	
+	@OneToOne
+	private Orders orders;
+	
+	@Column(name = "TOTAL_AMOUNT")
+	private String totalAmount;
 }
