@@ -1,0 +1,16 @@
+.table > thead > tr > th {
+  font-weight: 500;
+}
+.table-bordered {
+  border: 0px;
+}
+.table-bordered th, .table-bordered td {
+  border-color: #d7dbde;
+}
+form {
+  padding-left: 0px;
+}
+.form-control {
+  margin-top: 10px;
+  height: 40px;
+}

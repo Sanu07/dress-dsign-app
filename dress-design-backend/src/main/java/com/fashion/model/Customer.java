@@ -25,15 +25,13 @@ import lombok.NoArgsConstructor;
 public class Customer {
 
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	@Column(name = "_ID")
 	private long id;
 
 	// 1st 2 last 2 alphabets and then last 4 digits of their ph no
 	@Column(name = "CUSTOMER_REF_NO")
-	private String customer;
+	private String customerRefNo;
 
 	@Column(name = "CUSTOMER_NAME")
 	private String customerName;

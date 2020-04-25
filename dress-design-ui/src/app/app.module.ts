@@ -21,6 +21,9 @@ import { PaymentsComponent } from './components/payments/payments.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { AdminUsersComponent } from './components/admin-users/admin-users.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
+import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { OrdersComponent } from './components/orders/orders.component';
     PaymentsComponent,
     CustomersComponent,
     AdminUsersComponent,
-    OrdersComponent
+    OrdersComponent,
+    AddCustomerComponent,
+    ListCustomersComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -44,7 +49,8 @@ import { OrdersComponent } from './components/orders/orders.component';
     FooterModule,
     FixedPluginModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     {
