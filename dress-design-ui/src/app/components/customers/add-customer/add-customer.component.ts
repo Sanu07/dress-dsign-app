@@ -16,12 +16,28 @@ export class Customer {
 export class AddCustomerComponent implements OnInit {
 
   public customer = new Customer();
+  public isAddCustomerEnabled = true;
+  public isLoading: boolean;
+  public displayButtonText = 'Save';
   constructor() { }
 
   ngOnInit(): void {
   }
 
   public saveCustomer() {
-    console.log(this.customer);
+    this.isAddCustomerEnabled = false;
+    this.displayButtonText = 'Saving';
+    this.isLoading = true;
+    setTimeout(() => {
+      this.isLoading = false;
+      this.displayButtonText = 'Saved';
+    }, 2000);
+  }
+
+  public addCustomer() {
+    this.customer = new Customer();
+    this.isAddCustomerEnabled = true;
+    this.displayButtonText = 'Save';
+    this.isLoading = false;
   }
 }

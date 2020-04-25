@@ -32,11 +32,6 @@ export class ListCustomersComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.customers.filter((key, value) => {
-      console.log(key);
-      console.log(value);
-    })
-  }
+  ngOnInit(): void { }
 
 }
