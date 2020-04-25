@@ -24,6 +24,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
 import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchFilterPipe } from './shared/filters/search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminUsersComponent,
     OrdersComponent,
     AddCustomerComponent,
-    ListCustomersComponent
+    ListCustomersComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserAnimationsModule,
