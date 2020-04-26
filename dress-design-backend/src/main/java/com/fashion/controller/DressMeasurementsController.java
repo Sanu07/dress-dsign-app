@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fashion.model.DressMeasurements;
 import com.fashion.service.DressMeasurementsService;
 
-@RestController("/admin")
+@RestController
 @CrossOrigin(origins = "*")
-public class MeasurementsController {
+public class DressMeasurementsController {
 
 	@Autowired
 	DressMeasurementsService measurementsService;
@@ -33,17 +33,17 @@ public class MeasurementsController {
 	}
 	
 	@GetMapping("/measurements/{measurementId}")
-	public DressMeasurements getMeasurement(@PathVariable long dressMeasurementId) {
+	public DressMeasurements getMeasurement(@PathVariable("measurementId") long dressMeasurementId) {
 		return measurementsService.getDressMeasurement(dressMeasurementId);
 	}
 	
-	@PutMapping("/measurements/{measurementId}")
+	@PutMapping("/measurements")
 	public DressMeasurements updateMeasurements(@RequestBody DressMeasurements dressMeasurements) {
 		return measurementsService.updateDressMeasurements(dressMeasurements);
 	}
 	
-	@DeleteMapping
-	public void deleteMeasurements(@PathVariable long dressMeasurementId) {
+	@DeleteMapping("/measurements/{measurementId}")
+	public void deleteMeasurements(@PathVariable("measurementId") long dressMeasurementId) {
 		measurementsService.deleteDressMeasurements(dressMeasurementId);
 	}
 }

@@ -16,13 +16,27 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthHtppInterceptorService } from './services/auth-service/basic-auth-interceptor.service';
 import { FormsModule } from '@angular/forms';
-
+import { MeasurementsComponent } from './components/measurements/measurements.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { AdminUsersComponent } from './components/admin-users/admin-users.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
+import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    MeasurementsComponent,
+    PaymentsComponent,
+    CustomersComponent,
+    AdminUsersComponent,
+    OrdersComponent,
+    AddCustomerComponent,
+    ListCustomersComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,7 +49,8 @@ import { FormsModule } from '@angular/forms';
     FooterModule,
     FixedPluginModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     {

@@ -1,0 +1,16 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" [destroyOnHide]="false" class="nav-tabs">
+  <li [ngbNavItem]="1" [destroyOnHide]="true">
+    <a ngbNavLink>Customers</a>
+    <ng-template ngbNavContent>
+      <app-list-customers></app-list-customers>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Add Customer</a>
+    <ng-template ngbNavContent>
+      <app-add-customer></app-add-customer>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

@@ -1,12 +1,18 @@
 package com.fashion.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -23,8 +29,11 @@ public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PAYMENT_ID")
+	@Column(name = "_ID")
 	private long id;
+	
+	@Column(name = "PAYMENT_REF_NO")
+	private String paymentId;
 	
 	@Column(name = "PAYMENT_TYPE")
 	private String paymentType;
@@ -35,6 +44,30 @@ public class Payment {
 	@Column(name = "BALANCE_DUE")
 	private String balanceDue;
 	
-	@Column(name = "RECEIVED_DATE")
-	private Date receivedDate;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "payment")
+	private List<ReceivedDates> receivedDates;
+	
+	@OneToOne
+	private Orders order;
+	
+	@Data
+	@AllArgsConstructor(access = AccessLevel.PUBLIC)
+	@Entity
+	@Table(name = "RECEIVED_DETAILS")
+	class ReceivedDates {
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@Column(name = "RECEIVED_ID")
+		private long id;
+		
+		@Column(name = "RECEIVED_AMOUNT")
+		private double paidAmount;
+		
+		@Column(name = "RECEIVED_DATE")
+		private Date receivedDate;
+		
+		@ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name = "payment_id")
+		private Payment payment;
+	}
 }

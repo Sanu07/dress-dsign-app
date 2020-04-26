@@ -17,11 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_details")
-@SuppressWarnings("unused")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column(name = "_ID")
 	private long id;
 	@Column(name = "FULL_NAME", nullable = false)
 	private String fullName;
