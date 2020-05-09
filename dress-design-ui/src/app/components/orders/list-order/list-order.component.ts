@@ -23,7 +23,7 @@ export interface Payment {
 export class ListOrderComponent implements OnInit {
 
   public page = 1;
-  public pageSize = 8;
+  public pageSize = 5;
   public orders = [
     {
       crnNo: 'KO4132', orderRefNo: 'KT1234', name: 'John Dow', phone: '4589658741', receivedOn: '10/02/2020',

@@ -23,10 +23,12 @@ import { AdminUsersComponent } from './components/admin-users/admin-users.compon
 import { OrdersComponent } from './components/orders/orders.component';
 import { AddCustomerComponent } from './components/customers/add-customer/add-customer.component';
 import { ListCustomersComponent } from './components/customers/list-customers/list-customers.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchFilterPipe } from './shared/filters/search-filter.pipe';
 import { ListOrderComponent } from './components/orders/list-order/list-order.component';
 import { AddOrderComponent } from './components/orders/add-order/add-order.component';
+import { ListPaymentsComponent } from './components/payments/list-payments/list-payments/list-payments.component';
+import { EditPaymentsComponent } from './components/payments/edit-payments/edit-payments/edit-payments.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AddOrderComponent } from './components/orders/add-order/add-order.compo
     ListCustomersComponent,
     SearchFilterPipe,
     ListOrderComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    ListPaymentsComponent,
+    EditPaymentsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -57,6 +61,9 @@ import { AddOrderComponent } from './components/orders/add-order/add-order.compo
     HttpClientModule,
     FormsModule,
     NgbModule
+  ],
+  entryComponents: [
+    EditPaymentsComponent
   ],
   providers: [
     {

@@ -11,6 +11,8 @@ import { PaymentsComponent } from 'app/components/payments/payments.component';
 import { CustomersComponent } from 'app/components/customers/customers.component';
 import { MeasurementsComponent } from 'app/components/measurements/measurements.component';
 import { OrdersComponent } from 'app/components/orders/orders.component';
+import { ListPaymentsComponent } from 'app/components/payments/list-payments/list-payments/list-payments.component';
+import { EditPaymentsComponent } from 'app/components/payments/edit-payments/edit-payments/edit-payments.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -22,6 +24,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'notifications', component: NotificationsComponent },
   { path: 'measurements', component: MeasurementsComponent },
   { path: 'customers', component: CustomersComponent },
-  { path: 'payments', component: PaymentsComponent },
+  { path: 'payments', component: ListPaymentsComponent },
   { path: 'orders', component: OrdersComponent }
 ];

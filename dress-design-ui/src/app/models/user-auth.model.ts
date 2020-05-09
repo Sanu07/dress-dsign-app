@@ -15,3 +15,7 @@ export class UserRegistration {
   email?: string;
   gender: string;
 }
+
+export interface ModalContext {
+  test: string;
+}
