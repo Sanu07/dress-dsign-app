@@ -1,0 +1,8 @@
+.zoom-image img {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+}
+
+.zoom-image:hover img {
+  transform: scale(2);
+}
