@@ -2,13 +2,13 @@
   <form class="col-md-5">
     <div class="form-group">
       <div class="input-group-append">
-        <input type="text" class="form-control" name="searchString" placeholder="Type to search..."
+        <input type="text" class="form-control" name="searchString" placeholder="Search with Name, Phone & CRN"
           [(ngModel)]="searchString" />
         <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
       </div>
     </div>
   </form>
-  <table class="table table-striped table-bordered">
+  <table *ngIf="customers" class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>CRN</th>
@@ -19,17 +19,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let customer of customers | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize
-         | searchFilter : { name: searchString, phone: searchString, crnNo: searchString } : false">
-        <td>{{customer.crnNo}}</td>
-        <td>{{customer.name}}</td>
-        <td>{{customer.phone}}</td>
-        <td>{{customer.email}}</td>
-        <td>{{customer.address}}</td>
+      <tr
+        *ngFor="let customer of customers | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize
+         | searchFilter : { customerName: searchString, customerPhone: searchString, customerRefNo: searchString } : false">
+        <td>{{ customer.customerRefNo }}</td>
+        <td>{{ customer.customerName }}</td>
+        <td>{{ customer.customerPhone }}</td>
+        <td>{{ customer.customerEmail }}</td>
+        <td>{{ customer.customerAddress }}</td>
       </tr>
     </tbody>
   </table>
-  <ngb-pagination [collectionSize]="customers.length" [(page)]="page" [pageSize]="pageSize"
+  <ngb-pagination *ngIf="customers" [collectionSize]="customers.length" [(page)]="page" [pageSize]="pageSize"
     aria-label="Default pagination">
   </ngb-pagination>
 </div>

@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,18 +47,16 @@ public class JWTAuthController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTAuthTokenRequest authenticationRequest)
 			throws AuthenticationException {
 
-		return ResponseEntity.ok("success");
-		/*
-		 * authenticate(authenticationRequest.getUsername(),
-		 * authenticationRequest.getPassword());
-		 * 
-		 * UserDetails userDetails = jwtUserDetailsService
-		 * .loadUserByUsername(authenticationRequest.getUsername());
-		 * 
-		 * final String token = jwtTokenUtil.generateToken(userDetails);
-		 * 
-		 * return ResponseEntity.ok(new JWTAuthTokenResponse(token));
-		 */
+		  authenticate(authenticationRequest.getUsername(),
+		  authenticationRequest.getPassword());
+		  
+		  UserDetails userDetails = jwtUserDetailsService
+		  .loadUserByUsername(authenticationRequest.getUsername());
+		  
+		  final String token = jwtTokenUtil.generateToken(userDetails);
+		  
+		  return ResponseEntity.ok(new JWTAuthTokenResponse(token));
+		 
 	}
 
 	@RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)

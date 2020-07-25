@@ -16,6 +16,7 @@ import { UpgradeComponent } from '../../components/upgrade/upgrade.component';
 
 import { NgbModule, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditPaymentsComponent } from 'app/components/payments/edit-payments/edit-payments/edit-payments.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [

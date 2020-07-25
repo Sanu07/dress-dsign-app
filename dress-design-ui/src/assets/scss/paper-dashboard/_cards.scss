@@ -15,6 +15,7 @@
 
     .card-body{
         padding: 15px 15px 10px 15px;
+        box-shadow: 0px 0px 10px $medium-gray;
 
         &.table-full-width{
             padding-left: 0;
@@ -100,7 +101,7 @@
     label{
         font-size: $font-size-small;
         margin-bottom: 5px;
-        color: $dark-gray;
+        color: $light-black;
     }
 
     .card-footer{

@@ -6,47 +6,50 @@
   <div class="row">
     <div class="card card col-md-5">
       <div class="card-body">
-        <form>
+        <form [formGroup]="registerCustomerForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="name">Customer Reference No</label>
-            <input type="text" [(ngModel)]="customer.customerRefNo" name="customerRefNo" class="form-control"
-              id="customerRefNo" disabled="true">
+            <input type="text" formControlName="customerRefNo" name="customerRefNo" class="form-control"
+              id="customerRefNo" [attr.disabled]="true">
           </div>
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" [(ngModel)]="customer.customerName" name="customerName" class="form-control"
-              id="customerName">
+            <label for="name" class="required">Name</label>
+            <input type="text" formControlName="customerName" name="customerName" class="form-control"
+              [ngClass]="{ 'invalid-input': (registerFormControl.customerName.touched || submitted) && registerFormControl.customerName.errors}"
+              id="customerName" (change)="updateCustomerCRN()">
           </div>
           <div class="form-group">
-            <label for="alterEgo">Phone</label>
-            <input type="text" [(ngModel)]="customer.customerPhone" name="customerPhone" class="form-control"
-              id="customerPhone">
+            <label for="alterEgo" class="required">Phone</label>
+            <input type="text" formControlName="customerPhone" name="customerPhone" class="form-control"
+              [ngClass]="{ 'invalid-input': (registerFormControl.customerPhone.touched || submitted) && registerFormControl.customerPhone.errors}"
+              id="customerPhone" (change)="updateCustomerCRN()" pattern="[0-9]+">
           </div>
           <div class="form-group">
             <label for="alterEgo">Email</label>
-            <input type="email" [(ngModel)]="customer.customerEmail" name="customerEmail" class="form-control"
+            <input type="email" formControlName="customerEmail" name="customerEmail" class="form-control"
               id="customerEmail">
           </div>
           <div class="form-group">
-            <label for="alterEgo">Address</label>
-            <textarea rows="3" [(ngModel)]="customer.customerAddress" name="customerAddress" class="form-control"
+            <label for="alterEgo" class="required">Address</label>
+            <textarea rows="3" formControlName="customerAddress" name="customerAddress" class="form-control"
+              [ngClass]="{ 'invalid-input': (registerFormControl.customerAddress.touched || submitted) && registerFormControl.customerAddress.errors}"
               id="customerAddress"></textarea>
           </div>
-          <button type="submit" class="btn btn-success" (click)="saveCustomer()" [disabled]="!isAddCustomerEnabled">
+          <button type="submit" class="btn btn-success"
+            [disabled]="!isAddCustomerEnabled || registerCustomerForm.invalid">
             <span class="spinner-border spinner-border-sm" *ngIf="isLoading"></span>
             <span style="margin-left: 5px;">{{ displayButtonText }}</span>
           </button>
         </form>
       </div>
     </div>
-    <div class="col-md-5">
-      <div class="alert alert-success">
-        <span>Details for <strong>John Watson</strong> has been saved successfully with<strong> CRN:
-            KO1234</strong></span>
+    <div class="col-md-5" *ngIf="isCustomerAdded">
+      <div class="alert alert-success" *ngIf="isCustomerAdded === 'success'">
+        <span>Details for <strong>{{ customer.customerName }}</strong> has been saved successfully with<strong> CRN:
+            {{ customer.customerRefNo }}</strong></span>
       </div>
-      <div class="alert alert-danger">
-        <span>Details for <strong>John Watson</strong> has been saved successfully with<strong> CRN:
-            KO1234</strong></span>
+      <div class="alert alert-danger" *ngIf="isCustomerAdded === 'error'">
+        Something went wrong. The Customer details <strong>could not</strong> be added.
       </div>
     </div>
   </div>

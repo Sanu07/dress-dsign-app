@@ -15,7 +15,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthHtppInterceptorService } from './services/auth-service/basic-auth-interceptor.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MeasurementsComponent } from './components/measurements/measurements.component';
 import { PaymentsComponent } from './components/payments/payments.component';
 import { CustomersComponent } from './components/customers/customers.component';
@@ -60,7 +60,8 @@ import { EditPaymentsComponent } from './components/payments/edit-payments/edit-
     FixedPluginModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     EditPaymentsComponent

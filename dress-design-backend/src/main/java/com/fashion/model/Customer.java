@@ -29,21 +29,20 @@ public class Customer {
 	@Column(name = "_ID")
 	private long id;
 
-	// 1st 2 last 2 alphabets and then last 4 digits of their ph no
-	@Column(name = "CUSTOMER_REF_NO")
+	@Column(name = "CUSTOMER_REF_NO", nullable = false)
 	private String customerRefNo;
 
-	@Column(name = "CUSTOMER_NAME")
+	@Column(name = "CUSTOMER_NAME", nullable = false)
 	private String customerName;
 
-	@Column(name = "CUSTOMER_PHONE")
-	private String phone;
+	@Column(name = "CUSTOMER_PHONE", unique = true, nullable = false)
+	private String customerPhone;
 
-	@Column(name = "CUSTOMER_EMAIL")
-	private String email;
+	@Column(name = "CUSTOMER_EMAIL", unique = true)
+	private String customerEmail;
 
-	@Column(name = "CUSTOMER_ADDRESS")
-	private String address;
+	@Column(name = "CUSTOMER_ADDRESS", nullable = false)
+	private String customerAddress;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
 	private List<Orders> orders;
