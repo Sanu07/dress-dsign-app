@@ -1,50 +1,46 @@
-<div class="card col-md-5">
-  <div class="card-body">
+<div class="card col-md-6">
+  <div class="card-body" *ngIf="customer">
     <div class="row">
       <div class="col-md-8">
         <span>Customer Reference Number</span>
       </div>
       <div class="col-md-4">
-        <span>KO1234</span>
+        <span>{{ customer.customerRefNo }}</span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8">
-        <span>Order Number</span>
+        <span>Customer Name</span>
       </div>
       <div class="col-md-4">
-        <span>KO1234</span>
+        <span>{{ customer.customerName }}</span>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8">
-        <span>Dress Reference Number</span>
+        <span>Customer Phone Number</span>
       </div>
       <div class="col-md-4">
-        <span>KO1234</span>
+        <span>{{ customer.customerPhone }}</span>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <form>
+    <form (submit)="onSavePayment()" [formGroup]="paymentForm">
       <div class="form-group row">
-        <label for="inputEmail3" class="col-md-6 col-form-label">Customer Address</label>
-        <textarea name="address" id="" cols="21" rows="3"></textarea>
+        <label for="totalAmount" class="col-md-6 col-form-label">Total Amount</label>
+        <input type="text" formControlName="totalAmount" name="totalAmount" id="totalAmount" [attr.disabled]="true">
       </div>
       <div class="form-group row">
-        <label for="inputEmail3" class="col-md-6 col-form-label">Total Amount</label>
-        <input name="totalAmount" type="text" />
+        <label for="paidAmount" class="col-md-6 col-form-label">Paid Amount</label>
+        <input type="text" formControlName="paidAmount" name="paidAmount" (change)='updateDueAmount()' id="paidAmount">
       </div>
       <div class="form-group row">
-        <label for="inputEmail3" class="col-md-6 col-form-label">Paid Amount</label>
-        <input name="totalAmount" type="text" />
+        <label for="dueAmount" class="col-md-6 col-form-label">Due Amount</label>
+        <input name="dueAmount" type="text" id="dueAmount" formControlName="dueAmount" />
       </div>
       <div class="form-group row">
-        <label for="inputEmail3" class="col-md-6 col-form-label">Due Amount</label>
-        <input name="totalAmount" type="text" />
-      </div>
-      <div class="form-group row">
-        <button type="submit" class="btn btn-success" (click)="saveCustomer()" style="margin-top: 22px;">
+        <button type="submit" class="btn btn-success" style="margin-top: 22px;">
           <span class="spinner-border spinner-border-sm" *ngIf="isLoading"></span>
           <span style="margin-left: 5px;">Submit</span>
         </button>

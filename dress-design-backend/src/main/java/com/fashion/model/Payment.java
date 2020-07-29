@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -44,6 +46,9 @@ public class Payment {
 	@Column(name = "BALANCE_DUE")
 	private String balanceDue;
 	
+	@Column(name = "TOTAL_AMOUNT")
+	private String totalAmount;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "payment")
 	private List<ReceivedDates> receivedDates;
 	
@@ -61,10 +66,11 @@ public class Payment {
 		private long id;
 		
 		@Column(name = "RECEIVED_AMOUNT")
-		private double paidAmount;
+		private String paidAmount;
 		
 		@Column(name = "RECEIVED_DATE")
-		private Date receivedDate;
+		@Temporal(TemporalType.DATE)
+		private Date receivedDate = new Date();
 		
 		@ManyToOne(fetch = FetchType.LAZY)
 		@JoinColumn(name = "payment_id")

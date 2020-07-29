@@ -2,20 +2,21 @@
   <li [ngbNavItem]="1" [destroyOnHide]="true">
     <a ngbNavLink>Order</a>
     <ng-template ngbNavContent>
-      <app-add-order></app-add-order>
+      <app-add-order (onOrderSave)="onOrderSave($event)" [isValidCRN]="isValidCRN"></app-add-order>
       <app-list-order></app-list-order>
     </ng-template>
   </li>
   <li [ngbNavItem]="2">
     <a ngbNavLink>Dress</a>
     <ng-template ngbNavContent>
-      <app-measurements></app-measurements>
+      <app-measurements (onSaveMeasurements)="onSaveMeasurements($event)"></app-measurements>
     </ng-template>
   </li>
   <li [ngbNavItem]="3">
     <a ngbNavLink>Payment</a>
     <ng-template ngbNavContent let-active>
-      <app-payments></app-payments>
+      <app-payments [customer]="orderToBeSaved.customer" [totalAmount]="totalAmount"
+        (onPaymentSave)="onPaymentSave($event)" (onOrderComplete)="onOrderComplete($event)"></app-payments>
     </ng-template>
   </li>
 </ul>

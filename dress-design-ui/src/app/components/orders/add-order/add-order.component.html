@@ -1,21 +1,23 @@
 <div class="card">
   <div class="card-body">
-    <form>
+    <form [formGroup]="orderForm" (ngSubmit)="onOrderSubmit()">
       <div class="row">
         <div class="col">
           <label for="name">CRN</label>
-          <input type="text" name="customerName" class="form-control" id="customerName">
+          <input type="text" formControlName="customerRefNo" name="customerRefNo" class="form-control"
+            id="customerRefNo">
         </div>
         <div class="col">
           <label for="alterEgo">Phone</label>
-          <input type="text" name="customerPhone" class="form-control" id="customerPhone">
+          <input type="text" formControlName="customerPhone" name="customerPhone" class="form-control"
+            id="customerPhone">
         </div>
         <div class="col">
           <label for="alterEgo">Estimated Delivery Date</label>
-          <input type="date" name="customerPhone" class="form-control" id="customerPhone">
+          <input type="date" formControlName="deliveryDate" name="deliveryDate" class="form-control" id="deliveryDate">
         </div>
         <div class="col">
-          <button type="submit" class="btn btn-success" (click)="saveCustomer()" style="margin-top: 22px;">
+          <button type="submit" class="btn btn-success" style="margin-top: 22px;">
             <span class="spinner-border spinner-border-sm" *ngIf="isLoading"></span>
             <span style="margin-left: 5px;">Proceed</span>
           </button>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fashion.config.DressParamsConfig;
 import com.fashion.model.Dress;
 import com.fashion.service.DressService;
 
@@ -22,6 +23,9 @@ public class DressController {
 	@Autowired
 	DressService dressService;
 	
+	@Autowired
+	DressParamsConfig dressParams;
+	
 	@PostMapping("/dress")
 	public Dress saveDress(@RequestBody Dress dress) {
 		return dressService.saveDress(dress);
@@ -30,6 +34,11 @@ public class DressController {
 	@GetMapping("/dress")
 	public List<Dress> getAllDresss() {
 		return (List<Dress>) dressService.getAllDresses();
+	}
+	
+	@GetMapping("/dress/params")
+	public DressParamsConfig getAllDresssParams() {
+		return dressParams;
 	}
 	
 	@GetMapping("/dress/{dressId}")

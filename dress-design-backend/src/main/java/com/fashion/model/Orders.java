@@ -6,12 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,23 +30,24 @@ import lombok.NoArgsConstructor;
 public class Orders {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "_ID")
+    @GeneratedValue(generator = "order-id-generator")
+    @GenericGenerator(name = "order-id-generator", 
+      parameters = @Parameter(name = "prefix", value = "ORDER"), 
+      strategy = "com.fashion.util.OrderIDGenerator")
+	@Column(name = "ORDER_ID")
 	private long id;
-	
-	@Column(name = "ORDER_REF_NO")
-	private String orderId;
 	
 	@OneToOne
 	private Dress dress;
 	
 	@Column(name = "ORDER_RECEIVED")
-	private Date orderReceived;
+	@Temporal(TemporalType.DATE)
+	private Date orderReceived = new Date();
 	
 	@Column(name = "ORDER_ESTIMATED_DELIVERY_DATE")
 	private Date estimatedDeliveryDate;
 	
-	@Column(name = "ORDER_DELIVERED_ON")
+	@Column(name = "ORDER_DELIVERED_ON", columnDefinition = "varchar(255) default 'PENDING'")
 	private Date orderDelivered;
 	
 	@OneToOne

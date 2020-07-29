@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -77,6 +79,10 @@ public class DressMeasurements {
 	
 	@Column(name = "WAIST_TO_ABOVE_KNEE")
 	private String waistToAboveKnee;
+	
+	@Type(type="text")
+	@Column(name = "COMMENTS")
+	private String comments;
 
 	@OneToOne
 	private Dress dress;

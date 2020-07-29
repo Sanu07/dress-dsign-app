@@ -37,6 +37,4 @@ public class Dress {
 	@OneToOne
 	private Orders orders;
 	
-	@Column(name = "TOTAL_AMOUNT")
-	private String totalAmount;
 }
