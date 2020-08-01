@@ -29,12 +29,12 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public Orders getOrder(long orderId) {
+	public Orders getOrder(String orderId) {
 		return ordersDao.findById(orderId).orElse(null);
 	}
 
 	@Override
-	public void deleteOrder(long orderId) {
+	public void deleteOrder(String orderId) {
 		ordersDao.deleteById(orderId);
 	}
 

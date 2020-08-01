@@ -2,9 +2,9 @@ package com.fashion.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -35,9 +35,10 @@ public class Orders {
       parameters = @Parameter(name = "prefix", value = "ORDER"), 
       strategy = "com.fashion.util.OrderIDGenerator")
 	@Column(name = "ORDER_ID")
-	private long id;
+	private String id;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dress_id")
 	private Dress dress;
 	
 	@Column(name = "ORDER_RECEIVED")
@@ -50,10 +51,11 @@ public class Orders {
 	@Column(name = "ORDER_DELIVERED_ON", columnDefinition = "varchar(255) default 'PENDING'")
 	private Date orderDelivered;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "payment_id")
 	private Payment payment;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 }

@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fashion.model.Orders;
+import com.fashion.model.Payment;
+import com.fashion.model.ReceivedDates;
 import com.fashion.service.OrdersService;
+import com.fashion.service.PaymentsService;
 
 @RestController
 @CrossOrigin("*")
@@ -22,9 +25,21 @@ public class OrdersController {
 	@Autowired
 	OrdersService ordersService;
 	
+	@Autowired
+	PaymentsService paymentsService;
+	
 	@PostMapping("/orders")
-	public Orders saveOrder(@RequestBody Orders Order) {
-		return ordersService.saveOrder(Order);
+	public Orders saveOrder(@RequestBody Orders order) {
+		System.out.println(order.getDress());
+		System.out.println(order.getPayment());
+		System.out.println(order.getPayment().getReceivedDates());
+		order.getDress().setOrders(order);
+		order.getPayment().setOrder(order);
+		return ordersService.saveOrder(order);
+	}
+	
+	public Payment savePayment(@RequestBody Payment payment) {
+		return paymentsService.savePayment(payment);
 	}
 	
 	@GetMapping("/orders")
@@ -33,7 +48,7 @@ public class OrdersController {
 	}
 	
 	@GetMapping("/orders/{orderId}")
-	public Orders getOrder(@PathVariable("orderId") long orderId) {
+	public Orders getOrder(@PathVariable("orderId") String orderId) {
 		return ordersService.getOrder(orderId);
 	}
 	
@@ -43,7 +58,7 @@ public class OrdersController {
 	}
 	
 	@DeleteMapping("/orders/{orderId}")
-	public void deleteOrder(@PathVariable("orderId") long orderId) {
+	public void deleteOrder(@PathVariable("orderId") String orderId) {
 		ordersService.deleteOrder(orderId);;
 	}
 }

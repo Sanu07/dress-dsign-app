@@ -16,6 +16,8 @@ public class CustomerController {
 	@Autowired
 	CustomerService customersService;
 	
+	private List<Customer> customers;
+	
 	@PostMapping("/customers")
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
 		Customer customerRes = null;
@@ -28,9 +30,12 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customers")
-	public List<Customer> getAllCustomers() {
+	public List<Customer> getAllCustomers(@RequestParam (name = "refresh", defaultValue = "false") boolean refresh) {
 		try {
-			return (List<Customer>) customersService.getAllCustomers();
+			if (refresh || customers == null) {
+				customers = (List<Customer>) customersService.getAllCustomers();
+			}
+			return customers;
 		} catch (Exception e) {
 			return new ArrayList<Customer>(0);
 		}
@@ -55,5 +60,16 @@ public class CustomerController {
 	@DeleteMapping("/customers/{customerId}")
 	public void deleteCustomer(@PathVariable("customerId") long customerId) {
 		customersService.deleteCustomer(customerId);
+	}
+	
+	public List<Customer> getAllCustomers() {
+		return customers;
+	}
+	
+	public Customer getCustomerById(long customerId) {
+		return customers.stream()
+		  .filter(customer -> customerId == customer.getId())
+		  .findAny()
+		  .orElse(null);
 	}
 }

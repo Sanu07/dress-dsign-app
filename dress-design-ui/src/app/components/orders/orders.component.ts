@@ -23,7 +23,7 @@ export class OrdersComponent implements OnInit {
   private isMeaserementsSaveSuccessfully: boolean;
   private isPaymentSavedSuccessfully: boolean;
   private orderToBeSaved: any = {};
-  private totalAmount = 0;
+  private totalAmount: number;
 
   constructor(
     private ordersService: OrdersService
@@ -55,8 +55,9 @@ export class OrdersComponent implements OnInit {
     let totalAmount = 0;
     for (let i = 0; i < data.dressParams.length; i++) {
       for (let j = 0; j < data.dressParams[i].length; j++) {
-        dressMeasurements[data.dressParams[i][j].name] = data.dressParams[i][j].measurements.split('|')[0]?.trim();
-        const amount = parseFloat(data.dressParams[i][j].measurements.split('|')[1]?.trim());
+        dressMeasurements[data.dressParams[i][j].name] = data.dressParams[i][j].measurements;
+        let amount = parseFloat(data.dressParams[i][j].chargedAmount);
+        amount = amount ? amount : 0;
         if (amount && amount > 0) {
           totalAmount += amount;
         }
@@ -81,10 +82,12 @@ export class OrdersComponent implements OnInit {
         payment.paidAmount = data.paidAmount;
         payment.dueAmount = data.dueAmount;
         payment.totalAmount = this.totalAmount;
-        payment.receivedDates = [{
-          'paidAmount': data.PaidAmount,
-          'payment': payment
-        }];
+        payment.receivedDates = [
+          {
+            paidAmount: data.paidAmount,
+            dueAmount: data.dueAmount
+          }
+        ];
         this.orderToBeSaved.payment = payment;
         this.isPaymentSavedSuccessfully = true;
       } else {
@@ -96,14 +99,10 @@ export class OrdersComponent implements OnInit {
   }
 
   onOrderComplete(data: any) {
-    if (true) {
-      console.log(this.orderToBeSaved);
-      return false;
+    if (this.isOrderSavedSuccessfully && this.isMeaserementsSaveSuccessfully && this.isPaymentSavedSuccessfully) {
+      this.ordersService.saveOrder(this.orderToBeSaved).subscribe((res: any) => {
+        console.log(res);
+      })
     }
-    // if (this.isOrderSavedSuccessfully && this.isMeaserementsSaveSuccessfully && this.isPaymentSavedSuccessfully) {
-    //   this.ordersService.saveOrder(this.orderToBeSaved).subscribe((res: any) => {
-    //     console.log(res);
-    //   })
-    // }
   }
 }

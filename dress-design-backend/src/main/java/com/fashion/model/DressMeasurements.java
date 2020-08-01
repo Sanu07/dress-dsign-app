@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -81,10 +83,8 @@ public class DressMeasurements {
 	private String waistToAboveKnee;
 	
 	@Type(type="text")
-	@Column(name = "COMMENTS")
+	@Column(name = "COMMENTS", columnDefinition = "TEXT default ''")
 	private String comments;
 
-	@OneToOne
-	private Dress dress;
 }
 

@@ -12,7 +12,7 @@ export class OrdersService {
   ) { }
 
   public getAllRegisteredCustomers() {
-    return this.http.get(HelperService.URL_INITIAL + 'customers');
+    return this.http.get(HelperService.URL_INITIAL + 'customers?refresh=true');
   }
 
   public getDressMeasurementsParams() {

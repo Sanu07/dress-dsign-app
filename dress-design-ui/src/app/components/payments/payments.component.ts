@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './payments.component.html',
   styleUrls: ['./payments.component.css']
 })
-export class PaymentsComponent implements OnInit {
+export class PaymentsComponent implements OnInit, OnChanges {
 
   public paymentForm: FormGroup;
 
@@ -16,7 +16,8 @@ export class PaymentsComponent implements OnInit {
   @Input() totalAmount: number;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +28,14 @@ export class PaymentsComponent implements OnInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.totalAmount && this.paymentForm) {
+      this.paymentForm.patchValue({
+        totalAmount: changes.totalAmount.currentValue,
+      });
+    }
+  }
+
   onSavePayment() {
     console.log(this.paymentForm.value);
     this.onPaymentSave.emit(this.paymentForm.value);
@@ -34,8 +43,9 @@ export class PaymentsComponent implements OnInit {
   }
 
   updateDueAmount() {
+    const dueAmount = this.paymentForm.get('totalAmount').value - this.paymentForm.get('paidAmount').value;
     this.paymentForm.patchValue({
-      dueAmount: this.paymentForm.get('totalAmount').value - this.paymentForm.get('paidAmount').value
+      dueAmount: dueAmount > 0 ? dueAmount : 0
     });
   }
 }

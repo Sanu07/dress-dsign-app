@@ -20,7 +20,7 @@ export class MeasurementsComponent implements OnInit {
     this.ordersService.getDressMeasurementsParams().subscribe((res) => {
       let chunkIndex = [];
       Object.keys(res).map((key, index) => {
-        chunkIndex.push({ name: key, value: res[key], measurements: '' });
+        chunkIndex.push({ name: key, value: res[key], measurements: '', chargedAmount: '' });
         if (index % 3 === 2) {
           this.dressParams.push(chunkIndex);
           chunkIndex = [];

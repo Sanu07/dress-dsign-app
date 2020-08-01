@@ -10,7 +10,7 @@ public interface OrdersService {
 
 	public Iterable<Orders> getAllOrders();
 
-	public Orders getOrder(long orderId);
+	public Orders getOrder(String orderId);
 
-	public void deleteOrder(long orderId);
+	public void deleteOrder(String orderId);
 }

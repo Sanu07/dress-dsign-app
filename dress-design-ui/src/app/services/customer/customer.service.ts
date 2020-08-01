@@ -17,6 +17,6 @@ export class CustomerService {
   }
 
   getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(HelperService.URL_INITIAL + 'customers');
+    return this.http.get<Customer[]>(HelperService.URL_INITIAL + 'customers?refresh=true');
   }
 }

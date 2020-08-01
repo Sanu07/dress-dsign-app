@@ -24,8 +24,12 @@
         <div class="row" *ngFor="let chunks of dressParams">
           <div class="col" *ngFor="let dressParam of chunks">
             <label for="dressParam.name">{{dressParam.value}}</label>
-            <input type="text" [(ngModel)]="dressParam.measurements" name="dressParam.name" class="form-control"
-              id="dressParam.name">
+            <div style="display: inline-flex;">
+              <input type="text" [(ngModel)]="dressParam.measurements" name="dressParam.name" class="form-control"
+                id="dressParam.name" width="50%">
+              <input type="text" [(ngModel)]="dressParam.chargedAmount" name="dressParam.chargedAmount"
+                class="form-control" id="dressParam.chargedAmount" width="50%">
+            </div>
           </div>
         </div>
         <div class="row">
