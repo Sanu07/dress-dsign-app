@@ -1,1 +1,6 @@
-<p>user works!</p>
+<mat-chip-list multiple [selectable]="true" role="string">
+    <mat-chip class="no-wrap" *ngFor="let option of options" [value]="option">
+        <mat-icon *ngIf="true">check</mat-icon>
+        {{option}}
+    </mat-chip>
+</mat-chip-list>

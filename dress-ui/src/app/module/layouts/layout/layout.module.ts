@@ -11,6 +11,9 @@ import { PaymentDetailsComponent } from 'src/app/components/payments/payment-det
 import { PaymentStatusComponent } from 'src/app/components/payments/payment-status/payment-status.component';
 import { PaymentsComponent } from 'src/app/components/payments/payments.component';
 import { ReplaySubject } from 'rxjs';
+import { OrdersComponent } from 'src/app/components/orders/orders.component';
+import { ListOrdersComponent } from 'src/app/components/orders/list-orders/list-orders.component';
+import { AddOrderComponent } from 'src/app/components/orders/add-order/add-order.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ReplaySubject } from 'rxjs';
     AddPaymentComponent,
     ListPaymentsComponent,
     PaymentDetailsComponent,
-    PaymentStatusComponent
+    PaymentStatusComponent,
+    OrdersComponent,
+    ListOrdersComponent,
+    AddOrderComponent
   ],
   imports: [
     RouterModule.forChild(LayoutRoutes),

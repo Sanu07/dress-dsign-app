@@ -1,0 +1,68 @@
+<div fxFlex fxLayout="column" fxLayoutGap="5px">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-subtitle>Select Custom Template</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-chip-list #chipList aria-label="Templates selection" multiple>
+                <mat-chip #c="matChip" *ngFor="let template of templates" [selectable]="true"
+                    (click)="toggleSelection(c)">
+                    <mat-icon *ngIf="c.selected">check</mat-icon>
+                    {{template}}
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isKurti">
+        <mat-card-header>
+            <mat-card-subtitle>Kurti</mat-card-subtitle>
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
+                <mat-icon (click)="toggleBadgeVisibility()">
+                    add
+                </mat-icon>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            Text content kurti
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isSalwar">
+        <mat-card-header>
+            <mat-card-subtitle>Salwar</mat-card-subtitle>
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
+                <mat-icon (click)="toggleBadgeVisibility()">
+                    add
+                </mat-icon>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            Text content Salwar
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isShirt">
+        <mat-card-header>
+            <mat-card-subtitle>Shirt</mat-card-subtitle>
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
+                <mat-icon (click)="toggleBadgeVisibility()">
+                    add
+                </mat-icon>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            Text content Shirt
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="isPant">
+        <mat-card-header>
+            <mat-card-subtitle>Pant</mat-card-subtitle>
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
+                <mat-icon (click)="toggleBadgeVisibility()">
+                    add
+                </mat-icon>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            Text content pant
+        </mat-card-content>
+    </mat-card>
+</div>

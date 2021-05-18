@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import {
+  MatAutocompleteModule,
   MatBadgeModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatChipsModule,
   MatDatepickerModule,
   MatFormFieldModule,
   MatGridListModule,
@@ -12,6 +14,7 @@ import {
   MatListModule,
   MatMenuModule,
   MatNativeDateModule,
+  MatOptionModule,
   MatPaginatorModule,
   MatSidenavModule,
   MatSnackBarModule,
@@ -42,7 +45,10 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatGridListModule
+  MatGridListModule,
+  MatChipsModule,
+  MatAutocompleteModule,
+  MatOptionModule
 ]
 
 @NgModule({
