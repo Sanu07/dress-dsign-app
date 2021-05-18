@@ -1,0 +1,33 @@
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step [completed]="orderPlaced" label="Order Placed" state="shopping_cart">
+    </mat-step>
+    <mat-step [completed]="true" label="Order Processed" state="pending_actions">
+    </mat-step>
+    <mat-step [completed]="false" label="Paid" state="payment">
+        <ng-template matStepLabel>
+            <mat-vertical-stepper #stepper>
+                <mat-step [completed]="false">
+                </mat-step>
+                <mat-step [completed]="false">
+                </mat-step>
+            </mat-vertical-stepper>
+        </ng-template>
+    </mat-step>
+    <mat-step state="done_all">
+        <ng-template matStepLabel>Order Delivered</ng-template>
+    </mat-step>
+    
+    <!-- Customized icons for stepper headers -->
+    <ng-template matStepperIcon="shopping_cart">
+        <mat-icon>shopping_cart</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="pending_actions">
+        <mat-icon>pending_actions</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="payment">
+        <mat-icon>payment</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="done_all">
+        <mat-icon>done_all</mat-icon>
+    </ng-template>
+</mat-horizontal-stepper>

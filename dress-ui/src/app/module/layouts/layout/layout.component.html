@@ -1,0 +1,11 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation" opened="true" mode="side">
+        <app-sidebar (closeSidenav)="sidenav.close()"></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlex fxLayoutGap="5px">
+        <app-navbar (sidenavToggle)="sidenav.toggle()"></app-navbar>
+        <main style="padding: 0px 10px;">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

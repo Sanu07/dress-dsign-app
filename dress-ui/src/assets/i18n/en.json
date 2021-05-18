@@ -1,0 +1,25 @@
+{
+    "login": "Login",
+    "signup": "Signup",
+    "name": "Name",
+    "password": "Password",
+    "email": "Email",
+    "phone": "Phone",
+    "emailOrPhone": "Email/Phone",
+    "submit": "Submit",
+    "home": "Home",
+    "customers": "Customers",
+    "orders": "Orders",
+    "payments": "Payments",
+    "dashboard": "Dashboard",
+    "contact-us": "Contact Us",
+    "services": "Services",
+
+    "routes": {
+        "LOGIN": "login",
+        "DASHBOARD": "dashboard",
+        "USER": "user",
+        "SIGNUP": "signup",
+        "CHILD_ROUTES": "./module/layouts/layout/layout.module#LayoutModule"
+    }
+}

@@ -1,0 +1,15 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [formGroup]="loginForm"
+        (submit)="onLogin()">
+        <mat-form-field appearance="outline">
+            <mat-label>{{ 'emailOrPhone' | translate }}</mat-label>
+            <input matInput formControlName="userId" type="text" required placeholder="{{ 'emailOrPhone' | translate }}">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>{{ 'password' | translate }}</mat-label>
+            <input matInput formControlName="password" type="password" required
+                placeholder="{{ 'password' | translate }}">
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">{{ 'login' | translate }}</button>
+    </form>
+</section>

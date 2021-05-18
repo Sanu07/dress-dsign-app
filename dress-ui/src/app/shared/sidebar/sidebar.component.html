@@ -1,0 +1,42 @@
+<mat-nav-list fxlayout="column">
+    <div class="profile-card">
+        <div>Name</div>
+        <div style="font-size: small; padding: 5px;">example@email.com</div>
+        <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="name">
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Pages</h2>
+
+    <a mat-list-item routerLink="/" (click)="onClose()">
+        <mat-icon>dashboard</mat-icon>
+        <span class="nav-caption">{{ 'dashboard' | translate }}</span>
+    </a>
+    <a mat-list-item routerLink="/" (click)="onClose()">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">{{ 'home' | translate }}</span>
+    </a>
+    <a mat-list-item routerLink="/customers" (click)="onClose()">
+        <mat-icon>groups</mat-icon>
+        <span class="nav-caption">{{ 'customers' | translate }}</span>
+    </a>
+    <a mat-list-item routerLink="/orders" (click)="onClose()">
+        <mat-icon>note_add</mat-icon>
+        <span class="nav-caption">{{ 'orders' | translate }}</span>
+    </a>
+    <a mat-list-item routerLink="/payments" (click)="onClose()">
+        <mat-icon>payment</mat-icon>
+        <span class="nav-caption">{{ 'payments' | translate }}</span>
+    </a>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>{{ 'services' | translate }}</h2>
+
+    <a mat-list-item routerLink="/contact-us" (click)="onClose()">
+        <mat-icon>contact_support</mat-icon>
+        <span class="nav-caption">{{ 'contact-us' | translate }}</span>
+    </a>
+
+</mat-nav-list>
