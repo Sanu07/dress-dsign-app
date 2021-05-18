@@ -4,14 +4,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.model.User;
+import com.fashion.entity.User;
 
 @RestController
 public class LoginRegistrationController {
 
 	@GetMapping("/hello")
 	public ResponseEntity<User> login() {
-		User user = new User(1L, "DD041120", "pass", "Sanu", "abc@test.com", 12521312, "m");
+		User user = new User();
 		return ResponseEntity.ok(user);
 	}
 }

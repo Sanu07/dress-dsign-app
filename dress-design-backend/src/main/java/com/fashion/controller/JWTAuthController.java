@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fashion.entity.JWTAuthTokenRequest;
+import com.fashion.entity.JWTAuthTokenResponse;
+import com.fashion.entity.User;
 import com.fashion.exceptions.AuthenticationException;
-import com.fashion.model.JWTAuthTokenRequest;
-import com.fashion.model.JWTAuthTokenResponse;
-import com.fashion.model.User;
 import com.fashion.service.impl.JWTDBUserDetailsServiceImpl;
 import com.fashion.util.JWTTokenUtil;
 

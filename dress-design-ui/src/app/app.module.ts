@@ -16,13 +16,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthHtppInterceptorService } from './services/auth-service/basic-auth-interceptor.service';
 import { FormsModule } from '@angular/forms';
+import { PaymentsComponent } from './app/components/payments/payments.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserAnimationsModule,

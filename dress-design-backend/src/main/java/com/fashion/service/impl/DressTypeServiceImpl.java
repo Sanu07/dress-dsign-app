@@ -3,8 +3,8 @@ package com.fashion.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fashion.dao.DressTypeDao;
-import com.fashion.model.DressType;
+import com.fashion.command.dao.DressTypeDao;
+import com.fashion.entity.DressType;
 import com.fashion.service.DressTypeService;
 
 @Service

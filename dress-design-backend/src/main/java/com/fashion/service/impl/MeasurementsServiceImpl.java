@@ -3,34 +3,34 @@ package com.fashion.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fashion.dao.MeasurementsDao;
-import com.fashion.model.DressMeasurements;
+import com.fashion.command.dao.MeasurementsCommandDao;
+import com.fashion.entity.Measurements;
 import com.fashion.service.DressMeasurementsService;
 
 @Service
 public class MeasurementsServiceImpl implements DressMeasurementsService {
 
 	@Autowired
-	MeasurementsDao measurementDao;
+	MeasurementsCommandDao measurementDao;
 
 	@Override
-	public DressMeasurements saveDressMeasurements(DressMeasurements measurements) {
+	public Measurements saveDressMeasurements(Measurements measurements) {
 		return measurementDao.save(measurements);
 	}
 
 	@Override
-	public DressMeasurements updateDressMeasurements(DressMeasurements dressMeasurements) {
+	public Measurements updateDressMeasurements(Measurements dressMeasurements) {
 		return measurementDao.save(dressMeasurements);
 	}
 
 	@Override
-	public Iterable<DressMeasurements> getAllDressMeasurements() {
+	public Iterable<Measurements> getAllDressMeasurements() {
 		return measurementDao.findAll();
 	}
 
 	@Override
-	public DressMeasurements getDressMeasurement(long dressMeasurementId) {
-		return measurementDao.findById(dressMeasurementId).orElse(new DressMeasurements());
+	public Measurements getDressMeasurement(long dressMeasurementId) {
+		return measurementDao.findById(dressMeasurementId).orElse(new Measurements());
 	}
 
 	@Override

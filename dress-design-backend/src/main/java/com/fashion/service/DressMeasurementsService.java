@@ -1,16 +1,16 @@
 package com.fashion.service;
 
-import com.fashion.model.DressMeasurements;
+import com.fashion.entity.Measurements;
 
 public interface DressMeasurementsService {
 	
-	public DressMeasurements saveDressMeasurements(DressMeasurements measurements);
+	public Measurements saveDressMeasurements(Measurements measurements);
 	
-	public DressMeasurements updateDressMeasurements(DressMeasurements dressMeasurements);
+	public Measurements updateDressMeasurements(Measurements dressMeasurements);
 	
-	public Iterable<DressMeasurements> getAllDressMeasurements();
+	public Iterable<Measurements> getAllDressMeasurements();
 	
-	public DressMeasurements getDressMeasurement(long dressMeasurementId);
+	public Measurements getDressMeasurement(long dressMeasurementId);
 	
 	public void deleteDressMeasurements(long dressMeasurementId);
 }

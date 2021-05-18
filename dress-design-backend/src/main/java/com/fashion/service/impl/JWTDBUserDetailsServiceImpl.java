@@ -9,14 +9,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.fashion.dao.LoginRegistrationDao;
-import com.fashion.model.User;
+import com.fashion.command.dao.UserCommandDao;
+import com.fashion.entity.User;
 
 @Service
 public class JWTDBUserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private LoginRegistrationDao userDao;
+	private UserCommandDao userDao;
 
 	@Autowired
 	private PasswordEncoder bcryptEncoder;

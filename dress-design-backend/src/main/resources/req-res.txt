@@ -1,0 +1,7 @@
+{
+    "customerId": "SG9836341480",
+    "customerName": "Sanu Ghosh",
+    "phone": "9836341480",
+    "email": "test@test.com",
+    "address": "A/21 South California" 
+}

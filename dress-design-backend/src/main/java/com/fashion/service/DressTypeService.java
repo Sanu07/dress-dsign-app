@@ -1,7 +1,7 @@
 package com.fashion.service;
 
-import com.fashion.model.DressMeasurements;
-import com.fashion.model.DressType;
+import com.fashion.entity.Measurements;
+import com.fashion.entity.DressType;
 
 public interface DressTypeService {
 	

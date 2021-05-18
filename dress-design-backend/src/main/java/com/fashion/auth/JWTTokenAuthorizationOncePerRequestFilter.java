@@ -37,9 +37,9 @@ public class JWTTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 		//logger.debug("Authentication Request For '{}'", request.getRequestURL());
-
+		
 		final String requestTokenHeader = request.getHeader(this.tokenHeader);
-
+		
 		String username = null;
 		String jwtToken = null;
 		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
