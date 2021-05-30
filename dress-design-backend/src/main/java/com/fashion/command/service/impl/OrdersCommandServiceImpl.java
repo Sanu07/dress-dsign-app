@@ -11,7 +11,7 @@ import org.springframework.util.concurrent.ListenableFuture;
 
 import com.fashion.command.dao.OrdersCommandDao;
 import com.fashion.command.service.OrdersCommandService;
-import com.fashion.entity.Orders;
+import com.fashion.entity.Order;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,14 +30,14 @@ public class OrdersCommandServiceImpl implements OrdersCommandService {
 	}
 
 	@Override
-	public Orders saveOrder(Orders order) {
-		Orders savedOrder = orderDao.save(order);
-		sendOrderRegistrationEvent(savedOrder);
+	public Order saveOrder(Order order) {
+		Order savedOrder = orderDao.save(order);
+		// sendOrderRegistrationEvent(savedOrder);
 		return savedOrder;
 	}
 
 	@Override
-	public Orders updateOrder(Orders order) {
+	public Order updateOrder(Order order) {
 		return orderDao.save(order);
 	}
 
@@ -46,7 +46,7 @@ public class OrdersCommandServiceImpl implements OrdersCommandService {
 		orderDao.deleteById(orderId);
 	}
 
-	private void sendOrderRegistrationEvent(Orders order) {
+	private void sendOrderRegistrationEvent(Order order) {
 		ListenableFuture<SendResult<String, String>> future = null;
 		try {
 			future = kafkaTemplate.send("orders", "order_event", mapper.writeValueAsString(order));

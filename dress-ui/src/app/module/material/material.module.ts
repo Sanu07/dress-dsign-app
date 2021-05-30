@@ -7,6 +7,9 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
@@ -48,7 +51,10 @@ const MATERIAL_MODULES = [
   MatGridListModule,
   MatChipsModule,
   MatAutocompleteModule,
-  MatOptionModule
+  MatOptionModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule
 ]
 
 @NgModule({

@@ -14,6 +14,8 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslationConfigModule } from './module/translation-config/translation-config.module';
 import { AppConfig } from 'src/config/app.config';
+import { AddOrderModalComponent } from './components/orders/modals/add-order-modal/add-order-modal.component';
+import { FeedbackComponent } from './components/utility/feedback/feedback.component';
 
 export function initResources(config: AppConfig, translate: TranslationConfigModule) {
   return () => config.load(translate);

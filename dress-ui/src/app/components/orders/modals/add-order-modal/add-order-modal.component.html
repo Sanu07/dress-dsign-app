@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>
+    Hi {{data?.name}}
+    <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
+        <mat-icon (click)="addOrderField()">add</mat-icon>
+    </button>
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="productForm">
+        <div formArrayName="order">
+            <div class="add-order-modal" fxLayoutGap="2px" *ngFor="let item of order.controls; let pointIndex=index"
+                [formGroupName]="pointIndex">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Size</mat-label>
+                    <input matInput type="text" formControlName="size">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" formControlName="amount">
+                </mat-form-field>
+                <button mat-icon-button>
+                    <mat-icon (click)="deleteOrderField(pointIndex)">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="order.value" cdkFocusInitial>Ok</button>
+</div>
+
+<ng-template #customTemplate>
+    <div class="add-order-modal">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Size</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" class="example-right-align">
+        </mat-form-field>
+    </div>
+</ng-template>

@@ -1,8 +1,10 @@
 <mat-nav-list fxlayout="column">
     <div class="profile-card">
-        <div>Name</div>
-        <div style="font-size: small; padding: 5px;">example@email.com</div>
         <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="name">
+        <div style="font-size: small;">Name</div>
+        <div style="font-size: small; padding: 5px;">example@email.com</div>
+        <div style="font-size: small;">Phone</div>
+        <button mat-stroked-button>Basic</button>
     </div>
 
     <mat-divider></mat-divider>
@@ -14,8 +16,8 @@
         <span class="nav-caption">{{ 'dashboard' | translate }}</span>
     </a>
     <a mat-list-item routerLink="/" (click)="onClose()">
-        <mat-icon>home</mat-icon>
-        <span class="nav-caption">{{ 'home' | translate }}</span>
+        <mat-icon>people</mat-icon>
+        <span class="nav-caption">User</span>
     </a>
     <a mat-list-item routerLink="/customers" (click)="onClose()">
         <mat-icon>groups</mat-icon>
@@ -35,8 +37,8 @@
     <h2 matSubheader>{{ 'services' | translate }}</h2>
 
     <a mat-list-item routerLink="/contact-us" (click)="onClose()">
-        <mat-icon>contact_support</mat-icon>
-        <span class="nav-caption">{{ 'contact-us' | translate }}</span>
+        <mat-icon>feedback</mat-icon>
+        <span class="nav-caption">Feedbacks</span>
     </a>
 
 </mat-nav-list>

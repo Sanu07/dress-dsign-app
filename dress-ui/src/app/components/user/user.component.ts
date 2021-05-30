@@ -6,7 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  public options = ['Kurti', 'Salwar', 'Shirt', 'Pant'];
+  public folders = [
+    {name: 'sanu', updated: 'thurs'},
+    {name: 'sanu', updated: 'thurs'}
+  ];
+
+  public notes = [
+    {name: 'sanu', updated: 'thurs'},
+    {name: 'sanu', updated: 'thurs'}
+  ];
   constructor() { }
 
   ngOnInit() {

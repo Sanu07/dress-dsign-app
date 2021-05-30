@@ -14,6 +14,9 @@ import { ReplaySubject } from 'rxjs';
 import { OrdersComponent } from 'src/app/components/orders/orders.component';
 import { ListOrdersComponent } from 'src/app/components/orders/list-orders/list-orders.component';
 import { AddOrderComponent } from 'src/app/components/orders/add-order/add-order.component';
+import { AddOrderModalComponent } from 'src/app/components/orders/modals/add-order-modal/add-order-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FeedbackComponent } from 'src/app/components/utility/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,18 @@ import { AddOrderComponent } from 'src/app/components/orders/add-order/add-order
     PaymentStatusComponent,
     OrdersComponent,
     ListOrdersComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    AddOrderModalComponent,
+    FeedbackComponent
   ],
   imports: [
     RouterModule.forChild(LayoutRoutes),
     AppCommonModule,
+    ReactiveFormsModule,
     GoogleChartsModule.forRoot({ mapsApiKey: 'AIzaSyDIViJw6I2CW86FLXbZGzQpg29MmUH-LXw' })
+  ],
+  entryComponents: [
+    AddOrderModalComponent
   ]
 })
 export class LayoutModule { }

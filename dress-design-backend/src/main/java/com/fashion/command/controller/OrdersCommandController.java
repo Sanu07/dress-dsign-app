@@ -1,5 +1,6 @@
 package com.fashion.command.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fashion.command.dao.CustomersCommandDao;
 import com.fashion.command.service.OrdersCommandService;
-import com.fashion.entity.Orders;
+import com.fashion.entity.Customer;
+import com.fashion.entity.Order;
 
 @RestController
 @RequestMapping("/orders") 
@@ -23,13 +26,19 @@ public class OrdersCommandController {
 	@Autowired
 	OrdersCommandService orderService;
 	
+	@Autowired
+	CustomersCommandDao customerDao;
+	
 	@PostMapping
-	public Orders saveOrder(@RequestBody Orders order) {
+	public Order saveOrder(@RequestBody Order order) {
+		// order.setCustomer(customerDao.findById(UUID.fromString("dbc7fdb4-173b-45bf-98d3-9c0d477ba64d")).orElse(null));
+		List<Customer> customers = customerDao.findAll();
+		order.setCustomer(customers.get(0));
 		return orderService.saveOrder(order);
 	}
 	
 	@PutMapping
-	public Orders updateOrder(@RequestBody Orders order) {
+	public Order updateOrder(@RequestBody Order order) {
 		return orderService.updateOrder(order);
 	}
 	

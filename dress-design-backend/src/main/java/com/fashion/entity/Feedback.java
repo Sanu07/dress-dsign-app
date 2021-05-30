@@ -4,17 +4,19 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -29,8 +31,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "USER_DETAILS")
-public class User implements Serializable {
+@Table(name = "FEEDBACK_DETAILS")
+public class Feedback implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,20 +42,11 @@ public class User implements Serializable {
 	@Column(name = "ID", updatable = false)
 	private UUID id;
 
-	@Column(name = "FULL_NAME", nullable = false)
-	private String fullName;
-
-	@Column(name = "LOGIN_ID", nullable = false)
-	private String loginId;
-
-	@Column(name = "PASSWORD", nullable = false)
-	private String password;
-
-	@Column(name = "EMAIL", nullable = false)
-	private String email;
-
-	@Column(name = "PHONE", nullable = false)
-	private String phone;
+	@Column(name = "DESCRIPTION", nullable = false)
+	private String description;
+	
+	@Column(name = "RATING", nullable = false)
+	private Integer rating;
 
 	@Version
 	private int version;
@@ -62,9 +55,13 @@ public class User implements Serializable {
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
+	
+	@ManyToOne(cascade={CascadeType.PERSIST})
+	@JoinColumn(name="order_id")
+	private Order order;
+	
+	@ManyToOne(cascade={CascadeType.PERSIST})
+	@JoinColumn(name="customer_id")
+	private Customer customer;
 
-	@UpdateTimestamp
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	@Column(name = "LAST_UPDATED_AT")
-	private LocalDateTime updatedAt;
 }

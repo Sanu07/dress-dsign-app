@@ -19,16 +19,39 @@
 </mat-grid-list> -->
 <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="20px">
    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px" class="stats-cards">
-      <mat-card fxFlex="50">
-         <google-chart [title]="title" [type]="type" [data]="data" [columns]="columnNames" [options]="options">
-         </google-chart>
+      <mat-card fxFlex>
       </mat-card>
-      <mat-card fxFlex="50">
+      <mat-card fxFlex>
+      </mat-card>
+      <mat-card fxFlex>
+      </mat-card>
+   </div>
+   <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px" class="stats-cards">
+      <mat-card fxFlex>
+         <div>
+            <table>
+               <tr>
+                  <td>
+                     John Doe
+                  </td>
+                  <td>
+                     <mat-icon color="primary">star</mat-icon>
+                     <mat-icon color="primary">star_outline</mat-icon>
+                  </td>
+               </tr>
+            </table>
+         </div>
+      </mat-card>
+      <mat-card>
+         <!-- last 7 days sales. 2 lines graph 1.qty 2.amt -->
+         <!-- custom date range -->
          <google-chart [title]="title" [type]="type" [data]="data" [columns]="columnNames" [options]="options">
          </google-chart>
       </mat-card>
    </div>
-   <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+   <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px" class="stats-cards">
+      <!-- last 12 months revenue chart. 3 lines graph 1.cost 2.Expense 3.profit -->
+      <!-- custom date range -->
       <mat-card fxFlex>
          <google-chart [title]="title" [type]="type" [data]="data" [columns]="columnNames" [options]="options">
          </google-chart>

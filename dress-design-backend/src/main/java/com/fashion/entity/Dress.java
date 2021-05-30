@@ -5,6 +5,6 @@ public class Dress {
 	private String dressId;
 	private Measurements dressMeasurements;
 	private String dressType;
-	private Orders orders;
+	private Order orders;
 	private Customer customer;
 }

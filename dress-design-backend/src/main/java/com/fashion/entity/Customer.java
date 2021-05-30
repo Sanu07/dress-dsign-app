@@ -1,13 +1,16 @@
 package com.fashion.entity;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
@@ -16,8 +19,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
@@ -39,8 +42,7 @@ public class Customer {
 	@Type(type = "pg-uuid")
 	@Column(name = "_ID", updatable = false)
 	private UUID id;
-	
-	// 1st 2 last 2 alphabets and then last 4 digits of their ph no
+
 	@Column(name = "CUSTOMER_ID")
 	private String customerId;
 
@@ -57,21 +59,60 @@ public class Customer {
 	@Column(name = "CUSTOMER_ADDRESS")
 	@NotBlank(message = "Address cannot be null")
 	private String address;
-	
+
 	@Version
 	private int version;
-	
+
 	@CreationTimestamp
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
-	
+
 	@CreatedBy
 	@Column(name = "CREATED_BY_USER_ID")
 	private String createdByUserId;
-	
+
 	@UpdateTimestamp
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "LAST_UPDATED_AT")
 	private LocalDateTime updatedAt;
+	
+	@OneToMany(mappedBy = "customer", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	private Set<Order> orders;
+
+	public void addOrder(Order order) {
+		orders.add(order);
+		order.setCustomer(this);
+	}
+
+	public void removeOrder(Order order) {
+		orders.remove(order);
+		order.setCustomer(null);
+	}
+
+	@OneToMany(mappedBy = "customer", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	private Set<Feedback> feedbacks;
+
+	public void addFeedback(Feedback feedback) {
+		feedbacks.add(feedback);
+		feedback.setCustomer(this);
+	}
+
+	public void removeFeedback(Feedback feedback) {
+		feedbacks.remove(feedback);
+		feedback.setCustomer(null);
+	}
+
+	@OneToMany(mappedBy = "customer", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	private Set<Payment> payments;
+
+	public void addPayment(Payment payment) {
+		payments.add(payment);
+		payment.setCustomer(this);
+	}
+
+	public void removePayment(Payment payment) {
+		payments.remove(payment);
+		payment.setCustomer(null);
+	}
 }

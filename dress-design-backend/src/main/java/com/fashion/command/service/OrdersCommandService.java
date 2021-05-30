@@ -2,13 +2,13 @@ package com.fashion.command.service;
 
 import java.util.UUID;
 
-import com.fashion.entity.Orders;
+import com.fashion.entity.Order;
 
 public interface OrdersCommandService {
 
-	public Orders saveOrder(Orders order);
+	public Order saveOrder(Order order);
 
-	public Orders updateOrder(Orders order);
+	public Order updateOrder(Order order);
 
 	public void deleteOrder(UUID orderId);
 

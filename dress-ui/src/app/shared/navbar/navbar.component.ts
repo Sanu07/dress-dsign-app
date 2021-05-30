@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
 
   public isAuthorized: boolean;
   public hidden: boolean;
+  public isSidenavClosed;
 
   @Output() sidenavToggle = new EventEmitter<void>();
 
@@ -25,6 +26,7 @@ export class NavbarComponent implements OnInit {
 
   onToggleSidenav() {
     this.sidenavToggle.emit();
+    this.isSidenavClosed = !this.isSidenavClosed;
   }
 
   toggleBadgeVisibility() {

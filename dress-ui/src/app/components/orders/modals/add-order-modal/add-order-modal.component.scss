@@ -1,0 +1,11 @@
+:host {
+    mat-form-field.mat-form-field {
+        font-size: 10px;
+    }
+    .add-order-modal {
+        width: 100%;
+    }
+    .add-order-modal .mat-form-field:first-child {
+        width: 35%;
+    }
+}
