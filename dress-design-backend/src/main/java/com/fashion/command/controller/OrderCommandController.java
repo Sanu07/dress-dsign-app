@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.command.dao.CustomersCommandDao;
-import com.fashion.command.service.OrdersCommandService;
+import com.fashion.command.dao.CustomerCommandDao;
+import com.fashion.command.service.OrderCommandService;
 import com.fashion.entity.Customer;
 import com.fashion.entity.Order;
 
 @RestController
 @RequestMapping("/orders") 
 @CrossOrigin(origins = "*")
-public class OrdersCommandController {
+public class OrderCommandController {
 
 	@Autowired
-	OrdersCommandService orderService;
+	OrderCommandService orderService;
 	
 	@Autowired
-	CustomersCommandDao customerDao;
+	CustomerCommandDao customerDao;
 	
 	@PostMapping
 	public Order saveOrder(@RequestBody Order order) {

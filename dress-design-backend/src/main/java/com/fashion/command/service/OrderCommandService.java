@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.fashion.entity.Order;
 
-public interface OrdersCommandService {
+public interface OrderCommandService {
 
 	public Order saveOrder(Order order);
 

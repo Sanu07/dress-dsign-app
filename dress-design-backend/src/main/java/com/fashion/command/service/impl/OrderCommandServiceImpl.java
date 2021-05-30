@@ -9,23 +9,25 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import com.fashion.command.dao.OrdersCommandDao;
-import com.fashion.command.service.OrdersCommandService;
+import com.fashion.command.dao.OrderCommandDao;
+import com.fashion.command.service.OrderCommandService;
 import com.fashion.entity.Order;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class OrdersCommandServiceImpl implements OrdersCommandService {
+public class OrderCommandServiceImpl implements OrderCommandService {
 
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
-	private static final ObjectMapper mapper = new ObjectMapper();
+	@Autowired
+	private final ObjectMapper mapper = new ObjectMapper();
 
-	private OrdersCommandDao orderDao;
+	@Autowired
+	private OrderCommandDao orderDao;
 
-	public OrdersCommandServiceImpl(OrdersCommandDao orderDao) {
+	public OrderCommandServiceImpl(OrderCommandDao orderDao) {
 		this.orderDao = orderDao;
 	}
 

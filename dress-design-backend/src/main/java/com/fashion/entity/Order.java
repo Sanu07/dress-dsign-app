@@ -54,7 +54,7 @@ public class Order {
 
 	@CreationTimestamp
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	@Column(name = "CREATED_AT")
+	@Column(name = "CREATED_AT", updatable = false)
 	private LocalDateTime createdAt;
 
 	@Column(name = "ESTIMATED_DELIVERY_DATE")

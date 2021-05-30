@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fashion.command.dao.UserCommandDao;
-import com.fashion.command.service.UsersCommandService;
+import com.fashion.command.service.UserCommandService;
 import com.fashion.entity.User;
 
 @Service
-public class UsersCommandServiceImpl implements UsersCommandService {
+public class UserCommandServiceImpl implements UserCommandService {
 
 	@Autowired
 	private UserCommandDao userDao;

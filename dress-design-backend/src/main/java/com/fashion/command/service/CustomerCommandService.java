@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.fashion.entity.Customer;
 
-public interface CustomersCommandService {
+public interface CustomerCommandService {
 
 	public Customer saveCustomer(Customer customer);
 

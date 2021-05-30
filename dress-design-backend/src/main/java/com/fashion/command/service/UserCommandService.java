@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.fashion.entity.User;
 
-public interface UsersCommandService {
+public interface UserCommandService {
 
 	public User saveUser(User user);
 

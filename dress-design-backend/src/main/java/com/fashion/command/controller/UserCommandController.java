@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.command.service.UsersCommandService;
+import com.fashion.command.service.UserCommandService;
 import com.fashion.entity.User;
 import com.fashion.util.ReferenceIDGenerator;
 
@@ -26,7 +26,7 @@ public class UserCommandController {
 	Logger logger = LoggerFactory.getLogger(UserCommandController.class);
 
 	@Autowired
-	UsersCommandService usersService;
+	UserCommandService usersService;
 
 	@PostMapping
 	public User saveUser(@RequestBody User user) {

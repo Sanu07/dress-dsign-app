@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.fashion.entity.Customer;
 
 @Repository
-public interface CustomersCommandDao extends JpaRepository<Customer, UUID> {
+public interface CustomerCommandDao extends JpaRepository<Customer, UUID> {
 	
 }

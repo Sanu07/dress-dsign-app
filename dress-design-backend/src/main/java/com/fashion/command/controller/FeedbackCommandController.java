@@ -12,29 +12,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.command.service.CustomerCommandService;
-import com.fashion.entity.Customer;
+import com.fashion.command.service.FeedbackCommandService;
+import com.fashion.entity.Feedback;
 
 @RestController
-@RequestMapping("/customers") 
+@RequestMapping("/feedbacks") 
 @CrossOrigin(origins = "*")
-public class CustomerCommandController {
-
+public class FeedbackCommandController {
+	
 	@Autowired
-	CustomerCommandService customersService;
+	FeedbackCommandService feedbacksService;
 	
 	@PostMapping
-	public Customer saveCustomer(@RequestBody Customer customer) {
-		return customersService.saveCustomer(customer);
+	public Feedback saveFeedback(@RequestBody Feedback feedback) {
+		return feedbacksService.saveFeedback(feedback);
 	}
 	
 	@PutMapping
-	public Customer updateCustomer(@RequestBody Customer customer) {
-		return customersService.updateCustomer(customer);
+	public Feedback updateFeedback(@RequestBody Feedback feedback) {
+		return feedbacksService.updateFeedback(feedback);
 	}
 	
-	@DeleteMapping("/{customerId}")
-	public void deleteCustomer(@PathVariable UUID customerId) {
-		customersService.deleteCustomer(customerId);
+	@DeleteMapping("/{feedbackId}")
+	public void deleteFeedback(@PathVariable UUID feedbackId) {
+		feedbacksService.deleteFeedback(feedbackId);
 	}
 }

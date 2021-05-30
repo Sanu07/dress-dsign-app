@@ -9,30 +9,30 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
-import com.fashion.command.dao.CustomersCommandDao;
-import com.fashion.command.service.CustomersCommandService;
+import com.fashion.command.dao.CustomerCommandDao;
+import com.fashion.command.service.CustomerCommandService;
 import com.fashion.entity.Customer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class CustomersCommandServiceImpl implements CustomersCommandService {
+public class CustomerCommandServiceImpl implements CustomerCommandService {
 
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
 
 	private static final ObjectMapper mapper = new ObjectMapper();
 
-	private CustomersCommandDao customerDao;
+	private CustomerCommandDao customerDao;
 
-	public CustomersCommandServiceImpl(CustomersCommandDao customerDao) {
+	public CustomerCommandServiceImpl(CustomerCommandDao customerDao) {
 		this.customerDao = customerDao;
 	}
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
 		Customer savedCustomer = customerDao.save(customer);
-		sendCustomerRegistrationEvent(savedCustomer);
+		// sendCustomerRegistrationEvent(savedCustomer);
 		return savedCustomer;
 	}
 
