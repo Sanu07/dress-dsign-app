@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.dto.Orders;
+import com.fashion.dto.Order;
 import com.fashion.query.service.OrderQueryService;
 
 import reactor.core.publisher.Flux;
@@ -24,12 +24,12 @@ public class OrdersQueryController {
 	private OrderQueryService orderService;
 	
 	@GetMapping
-	public Flux<Orders> getAllCustomers() {
+	public Flux<Order> getAllCustomers() {
 		return orderService.getAllOrders();
 	}
 	
 	@GetMapping("/{uuid}")
-	public Mono<Orders> getCustomerById(@PathVariable UUID uuid) {
+	public Mono<Order> getCustomerById(@PathVariable UUID uuid) {
 		return orderService.getOrderById(uuid);
 	}
 }

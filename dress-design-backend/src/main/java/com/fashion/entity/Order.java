@@ -24,6 +24,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fashion.dto.Measurements;
 import com.fashion.enums.OrderStatusEnum;
 import com.fashion.util.MeasurementsConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;

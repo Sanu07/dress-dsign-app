@@ -32,7 +32,7 @@ public class User {
 
 	private String loginId;
 
-	private long phone;
+	private String phone;
 
 	private int version;
 

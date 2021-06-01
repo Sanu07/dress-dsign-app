@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
@@ -45,10 +46,10 @@ public class Payment {
 	private PaymentTypeEnum paymentType;
 
 	@Column(name = "AMOUNT_PAID", nullable = false)
-	private String paidAmount;
+	private Double paidAmount;
 
 	@Column(name = "BALANCE_DUE", nullable = false)
-	private String balanceDue;
+	private Double balanceDue;
 
 	@CreationTimestamp
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -62,4 +63,7 @@ public class Payment {
 	@ManyToOne(cascade={CascadeType.PERSIST})
 	@JoinColumn(name="order_id")
 	private Order order;
+	
+	@Version
+	private int version;
 }

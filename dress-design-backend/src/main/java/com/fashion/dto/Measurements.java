@@ -1,4 +1,4 @@
-package com.fashion.entity;
+package com.fashion.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

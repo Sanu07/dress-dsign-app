@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.fashion.dto.Orders;
+import com.fashion.dto.Order;
 import com.fashion.query.dao.OrderQueryDao;
 import com.fashion.query.service.OrderQueryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,12 +27,12 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 	private ObjectMapper mapper = null;
 
 	@Override
-	public Flux<Orders> getAllOrders() {
+	public Flux<Order> getAllOrders() {
 		return orderDao.findAll();
 	}
 
 	@Override
-	public Mono<Orders> getOrderById(UUID orderId) {
+	public Mono<Order> getOrderById(UUID orderId) {
 		return orderDao.findById(orderId);
 	}
 
@@ -44,7 +44,7 @@ public class OrderQueryServiceImpl implements OrderQueryService {
 					   .addModule(new Jdk8Module())
 					   .addModule(new JavaTimeModule())
 					   .build();
-			Orders cust = mapper.readValue(order, Orders.class);
+			Order cust = mapper.readValue(order, Order.class);
 			System.out.println(cust);
 			orderDao.save(cust).subscribe(System.out::println);
 		} catch (Exception e) {

@@ -3,10 +3,13 @@ package com.fashion.dto;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fashion.enums.PaymentTypeEnum;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
@@ -18,18 +21,25 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @NoArgsConstructor
-@Document(collection = "payments")
+@Document(collection = "payment_details")
 public class Payment {
 
 	@Id
 	private UUID id;
 
-	private String paymentType;
+	@Enumerated(EnumType.STRING)
+	private PaymentTypeEnum paymentType;
 
-	private String paidAmount;
+	private Double paidAmount;
 
-	private String balanceDue;
+	private Double balanceDue;
 
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	private LocalDateTime receivedDate;
+	private LocalDateTime createdAt;
+	
+	private String customerId;
+	
+	private String orderId;
+	
+	private int version;
 }

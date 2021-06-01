@@ -1,7 +1,7 @@
 package com.fashion.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Id;
@@ -15,43 +15,30 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Document(collection = "customer_details")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class Customer {
+@Document(collection = "feedback_details")
+public class Feedback implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private UUID id;
 
-	private String customerId;
+	private String description;
 
-	private String customerName;
-
-	private String phone;
-
-	private String email;
-
-	private String address;
-	
-	private Set<Order> orders;
-	
-	private Set<Feedback> feedbacks;
-	
-	private Set<Payment> payments;
+	private Integer rating;
 
 	private int version;
-	
+
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime createdAt;
 
-	private String createdByUserId;
-	
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	private LocalDateTime updatedAt;
-	
+	private String orderId;
+
+	private String customerId;
+
 }

@@ -48,18 +48,4 @@ public class OrderCommandServiceImpl implements OrderCommandService {
 		orderDao.deleteById(orderId);
 	}
 
-	private void sendOrderRegistrationEvent(Order order) {
-		ListenableFuture<SendResult<String, String>> future = null;
-		try {
-			future = kafkaTemplate.send("orders", "order_event", mapper.writeValueAsString(order));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		try {
-			System.out.println(future.get().getProducerRecord().value());
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-		}
-	}
-
 }
