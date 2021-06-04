@@ -9,7 +9,13 @@ import reactor.core.publisher.Mono;
 
 public interface UserQueryService {
 	
+	public Mono<User> saveUser(User user);
+
 	public Flux<User> getAllUsers();
-	
+
 	public Mono<User> getUserById(UUID userId);
+	
+	public Mono<User> updateUser(User user);
+
+	public Mono<User> deleteUserById(UUID userId);
 }

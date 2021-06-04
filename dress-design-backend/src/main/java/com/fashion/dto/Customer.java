@@ -38,6 +38,8 @@ public class Customer {
 
 	private String address;
 	
+	private boolean status;
+	
 	private Set<Order> orders;
 	
 	private Set<Feedback> feedbacks;

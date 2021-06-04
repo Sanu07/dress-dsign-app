@@ -28,10 +28,10 @@ public class CommandKafkaProducer {
 	private final ObjectMapper objectMapper;
 	private final KafkaTemplate<String, String> kafkaTemplate;
 
-	public ListenableFuture<SendResult<String, String>> sendEvent(Object customer, String key,
+	public ListenableFuture<SendResult<String, String>> sendEvent(Object object, String key,
 			String topic, Integer partition) throws JsonProcessingException {
 
-		String value = objectMapper.writeValueAsString(customer);
+		String value = objectMapper.writeValueAsString(object);
 		ProducerRecord<String, String> producerRecord = buildProducerRecord(key, value, topic, partition);
 
 		ListenableFuture<SendResult<String, String>> listenableFuture = kafkaTemplate.send(producerRecord);

@@ -1,63 +1,62 @@
 package com.fashion.command.service.kafka.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.listener.AcknowledgingMessageListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
 import com.fashion.constants.AppConstants;
-import com.fashion.dto.Customer;
-import com.fashion.query.service.CustomerQueryService;
+import com.fashion.dto.User;
+import com.fashion.query.service.UserQueryService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Service
 @Slf4j
-public class CustomerCommandKafkaListener implements AcknowledgingMessageListener<String, String> {
+@AllArgsConstructor
+public class UserCommandKafkaListener implements AcknowledgingMessageListener<String, String> {
 
-	@Autowired
-	CustomerQueryService customerService;
-
-	@Autowired
+	UserQueryService userService;
 	ObjectMapper mapper;
 
-	@KafkaListener(topics = { AppConstants.DRESS_CUSTOMER_EVENTS_TOPIC })
+	@KafkaListener(topics = { AppConstants.DRESS_USER_EVENTS_TOPIC })
 	@Override
 	public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
+		if (consumerRecord.partition() == 3) return;
 		log.info("ConsumerRecord : {} ", consumerRecord);
 		acknowledgment.acknowledge();
-		Customer customer = null;
+		User user = null;
 		if (consumerRecord.partition() == 1) {
 			try {
-				customer = mapper.readValue(consumerRecord.value(), Customer.class);
+				user = mapper.readValue(consumerRecord.value(), User.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			customerService.saveCustomer(customer).subscribe(cust -> log.info("Customer Saved in MongoDB {} ", cust));
+			userService.saveUser(user).subscribe(ord -> log.info("User Saved in MongoDB {} ", ord));
 		} else if (consumerRecord.partition() == 2) {
 			try {
-				customer = mapper.readValue(consumerRecord.value(), Customer.class);
+				user = mapper.readValue(consumerRecord.value(), User.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			if (customer.getId() != null) {
-				customerService.saveCustomer(customer).subscribe(cust -> log.info("Customer updated in MongoDB {} ", cust));
+			if (user.getId() != null) {
+				userService.saveUser(user).subscribe(usr -> log.info("User updated in MongoDB {} ", usr));
 			}
 		} else {
 			try {
-				customer = mapper.readValue(consumerRecord.value(), Customer.class);
+				user = mapper.readValue(consumerRecord.value(), User.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			Mono<Customer> dbCustomer = customerService.getCustomerById(customer.getId());
-			dbCustomer.doOnNext(cust -> {
-				customerService.deleteCustomerById(cust.getId())
-						.subscribe(c -> log.info("Customer updated in MongoDB {} ", c));
+			Mono<User> dbUser = userService.getUserById(user.getId());
+			dbUser.doOnNext(usr -> {
+				userService.deleteUserById(usr.getId())
+						.subscribe(u -> log.info("User updated in MongoDB {} ", u));
 			});
 		}
 	}

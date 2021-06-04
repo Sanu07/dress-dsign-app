@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -17,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -27,7 +27,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fashion.dto.Measurements;
 import com.fashion.enums.OrderStatusEnum;
 import com.fashion.util.MeasurementsConverter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
@@ -75,11 +74,13 @@ public class Order {
 	@Column(name = "STATUS", nullable = false)
 	private OrderStatusEnum orderStatus;
 	
+	@Column(name = "IS_ACTIVE")
+	private boolean status;
+	
 	@Version
 	private int version;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = { CascadeType.PERSIST })
+	@ManyToOne
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
@@ -87,8 +88,11 @@ public class Order {
 	@Column(name = "MEASUREMENTS")
     private Map<String, Measurements> measurements;
 	
-	@OneToMany(mappedBy = "order", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@OneToMany(mappedBy = "order")
 	private Set<Payment> payments;
+	
+	@OneToOne(mappedBy = "order")
+	private Feedback feedback;
 
 	public void addPayment(Payment payment) {
 		payments.add(payment);

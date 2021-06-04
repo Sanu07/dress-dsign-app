@@ -1,6 +1,5 @@
 package com.fashion.command.controller;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fashion.command.dao.CustomerCommandDao;
 import com.fashion.command.service.OrderCommandService;
-import com.fashion.entity.Customer;
 import com.fashion.entity.Order;
 
 @RestController
@@ -31,9 +29,6 @@ public class OrderCommandController {
 	
 	@PostMapping
 	public Order saveOrder(@RequestBody Order order) {
-		// order.setCustomer(customerDao.findById(UUID.fromString("dbc7fdb4-173b-45bf-98d3-9c0d477ba64d")).orElse(null));
-		List<Customer> customers = customerDao.findAll();
-		order.setCustomer(customers.get(0));
 		return orderService.saveOrder(order);
 	}
 	

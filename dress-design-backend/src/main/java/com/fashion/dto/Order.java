@@ -2,6 +2,7 @@ package com.fashion.dto;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.EnumType;
@@ -46,12 +47,16 @@ public class Order {
 	@Enumerated(EnumType.STRING)
 	private OrderStatusEnum orderStatus;
 	
+	private boolean status;
+	
 	private int version;
 	
 	private String customerId;
 
     private Map<String, Measurements> measurements;
 	
-	private String paymentId;
+	private Set<Payment> payments;
+	
+	private Feedback feedback;
 
 }

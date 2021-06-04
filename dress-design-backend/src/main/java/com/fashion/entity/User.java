@@ -57,6 +57,9 @@ public class User implements Serializable {
 
 	@Version
 	private int version;
+	
+	@Column(name = "IS_ACTIVE")
+	private boolean status;
 
 	@CreationTimestamp
 	@JsonSerialize(using = LocalDateTimeSerializer.class)

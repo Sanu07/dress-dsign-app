@@ -12,7 +12,7 @@ public class KafkaTopicCreationConfig {
 
 	@Bean
     public NewTopic customerEvents(){
-        return TopicBuilder.name(AppConstants.DRESS_CUSTOMER_EVENTS)
+        return TopicBuilder.name(AppConstants.DRESS_CUSTOMER_EVENTS_TOPIC)
                 .partitions(3)
                 .replicas(1)
                 .build();
@@ -20,7 +20,15 @@ public class KafkaTopicCreationConfig {
 	
 	@Bean
     public NewTopic orderEvents(){
-        return TopicBuilder.name(AppConstants.DRESS_ORDER_EVENTS)
+        return TopicBuilder.name(AppConstants.DRESS_ORDER_EVENTS_TOPIC)
+                .partitions(3)
+                .replicas(1)
+                .build();
+    }
+	
+	@Bean
+    public NewTopic userEvents(){
+        return TopicBuilder.name(AppConstants.DRESS_USER_EVENTS_TOPIC)
                 .partitions(3)
                 .replicas(1)
                 .build();
@@ -28,8 +36,8 @@ public class KafkaTopicCreationConfig {
 	
 	@Bean
     public NewTopic generalEvents(){
-        return TopicBuilder.name(AppConstants.DRESS_GENERAL_EVENTS)
-                .partitions(3)
+        return TopicBuilder.name(AppConstants.DRESS_GENERAL_EVENTS_TOPIC)
+                .partitions(2)
                 .replicas(1)
                 .build();
     }

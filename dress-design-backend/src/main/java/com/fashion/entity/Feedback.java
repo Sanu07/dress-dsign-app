@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -50,17 +51,20 @@ public class Feedback implements Serializable {
 
 	@Version
 	private int version;
+	
+	@Column(name = "IS_ACTIVE")
+	private boolean status;
 
 	@CreationTimestamp
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@Column(name = "CREATED_AT")
 	private LocalDateTime createdAt;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
+	@OneToOne
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	@ManyToOne(cascade={CascadeType.PERSIST})
+	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 

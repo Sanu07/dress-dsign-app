@@ -1,7 +1,42 @@
+[
+    {
+        "id": "ac1abd79-3132-4447-9cec-ba853183be73",
+        "customerId": "DW1734567890",
+        "customerName": "mypassword",
+        "phone": "1234297890",
+        "email": "david@gamil.com",
+        "address": "41/56 road",
+        "orders": null,
+        "feedbacks": null,
+        "payments": null,
+        "version": 0,
+        "createdAt": "2021-06-01T18:40:35.122",
+        "createdByUserId": "DW1234567899",
+        "updatedAt": "2021-06-01T18:40:35.123"
+    },
+    {
+        "id": "6922191a-4481-447d-a3d6-64f6db5491f1",
+        "customerId": "DW1934567890",
+        "customerName": "mypassword",
+        "phone": "1234207890",
+        "email": "david@gamil.com",
+        "address": "41/56 road",
+        "orders": null,
+        "feedbacks": null,
+        "payments": null,
+        "version": 0,
+        "createdAt": "2021-06-03T01:21:13.347",
+        "createdByUserId": "DW1234567899",
+        "updatedAt": "2021-06-03T01:21:13.348"
+    }
+]
+
 {
-    "customerId": "SG9836341480",
-    "customerName": "Sanu Ghosh",
-    "phone": "9836341480",
-    "email": "test@test.com",
-    "address": "A/21 South California" 
+    "customerId": "DW1934567890",
+    "customerName": "mypassword",
+    "phone": "1236207890",
+    "email": "david@gamil.com",
+    "address": "41/56 road",
+    "createdByUserId": "DW1234567899"
 }
+--------------------------------------------------------------------------------------------------------

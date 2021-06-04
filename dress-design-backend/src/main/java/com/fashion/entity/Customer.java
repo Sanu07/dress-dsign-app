@@ -76,6 +76,9 @@ public class Customer {
 	@Column(name = "LAST_UPDATED_AT")
 	private LocalDateTime updatedAt;
 	
+	@Column(name = "IS_ACTIVE")
+	private boolean status;
+	
 	@OneToMany(mappedBy = "customer", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	private Set<Order> orders;
 

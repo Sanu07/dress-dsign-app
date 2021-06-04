@@ -31,6 +31,8 @@ public class Feedback implements Serializable {
 	private String description;
 
 	private Integer rating;
+	
+	private boolean status;
 
 	private int version;
 
