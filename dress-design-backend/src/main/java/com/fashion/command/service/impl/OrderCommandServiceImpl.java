@@ -25,17 +25,19 @@ public class OrderCommandServiceImpl implements OrderCommandService {
 	public Order saveOrder(Order order) {
 		Order savedOrder = orderDao.save(order);
 		try {
-			kafkaProducer.sendEvent(EntityToDTOConverter.createDTOOrder(savedOrder), AppConstants.DRESS_ORDER_CREATE_EVENT_KEY,
-					AppConstants.DRESS_ORDER_EVENTS_TOPIC, AppConstants.CREATE_EVENT_PARTITION);
+			kafkaProducer.sendEvent(EntityToDTOConverter.createDTOOrder(savedOrder),
+					AppConstants.DRESS_ORDER_CREATE_EVENT_KEY, AppConstants.DRESS_ORDER_EVENTS_TOPIC,
+					AppConstants.CREATE_EVENT_PARTITION);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+
 		return savedOrder;
 	}
 
 	@Override
 	public Order updateOrder(Order order) {
-		 Order updatedOrder = orderDao.save(order);
+		Order updatedOrder = orderDao.save(order);
 		try {
 			kafkaProducer.sendEvent(updatedOrder, AppConstants.DRESS_ORDER_UPDATE_EVENT_KEY,
 					AppConstants.DRESS_ORDER_EVENTS_TOPIC, AppConstants.UPDATE_EVENT_PARTITION);
@@ -47,16 +49,17 @@ public class OrderCommandServiceImpl implements OrderCommandService {
 
 	@Override
 	public void deleteOrder(UUID orderId) {
-		Order order = orderDao.deleteOrderById(orderId, false);
-		try {
-			kafkaProducer.sendEvent(order, AppConstants.DRESS_ORDER_DELETE_EVENT_KEY,
-					AppConstants.DRESS_ORDER_EVENTS_TOPIC, AppConstants.DELETE_EVENT_PARTITION);
-			kafkaProducer.sendEvent(order.getFeedback(), AppConstants.DRESS_GENERAL_FEEDBACK_EVENT_KEY,
-					AppConstants.DRESS_GENERAL_EVENTS_TOPIC, AppConstants.FEEDBACK_EVENT_PARTITION);
-			kafkaProducer.sendEvent(order.getCustomer(), AppConstants.DRESS_CUSTOMER_UPDATE_EVENT_KEY,
-					AppConstants.DRESS_CUSTOMER_EVENTS_TOPIC, AppConstants.UPDATE_EVENT_PARTITION);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+		Order order = orderDao.findById(orderId).get();
+		Order updatedOrder = null;
+		if (order != null) {
+			order.setStatus(false);
+			updatedOrder = orderDao.saveAndFlush(order);
+			try {
+				kafkaProducer.sendEvent(updatedOrder, AppConstants.DRESS_ORDER_DELETE_EVENT_KEY,
+						AppConstants.DRESS_ORDER_EVENTS_TOPIC, AppConstants.DELETE_EVENT_PARTITION);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

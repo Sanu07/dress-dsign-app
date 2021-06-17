@@ -29,7 +29,7 @@ public class OrdersQueryController {
 	}
 	
 	@GetMapping("/{uuid}")
-	public Mono<Order> getCustomerById(@PathVariable UUID uuid) {
+	public Mono<Order> getCustomerById(@PathVariable String uuid) {
 		return orderService.getOrderById(uuid);
 	}
 }

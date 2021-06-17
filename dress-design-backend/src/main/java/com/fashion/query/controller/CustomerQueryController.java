@@ -1,7 +1,5 @@
 package com.fashion.query.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +33,7 @@ public class CustomerQueryController {
 	}
 	
 	@GetMapping("/{uuid}")
-	public Mono<Customer> getCustomerById(@PathVariable UUID uuid) {
+	public Mono<Customer> getCustomerById(@PathVariable String uuid) {
 		return customerService.getCustomerById(uuid);
 	}
 	

@@ -3,6 +3,8 @@ package com.fashion.command.controller;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +26,9 @@ public class CustomerCommandController {
 	CustomerCommandService customersService;
 	
 	@PostMapping
-	public Customer saveCustomer(@RequestBody Customer customer) {
-		return customersService.saveCustomer(customer);
+	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+		Customer savedCustomer = customersService.saveCustomer(customer);
+		return ResponseEntity.created(null).body(savedCustomer);
 	}
 	
 	@PutMapping
@@ -34,7 +37,8 @@ public class CustomerCommandController {
 	}
 	
 	@DeleteMapping("/{customerId}")
-	public void deleteCustomer(@PathVariable UUID customerId) {
+	public ResponseEntity<Void> deleteCustomer(@PathVariable UUID customerId) {
 		customersService.deleteCustomer(customerId);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).build();
 	}
 }

@@ -14,11 +14,7 @@ import com.fashion.dto.Order;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface OrderQueryDao extends ReactiveMongoRepository<Order, UUID> {
+public interface OrderQueryDao extends ReactiveMongoRepository<Order, String> {
 
-	@Modifying
-	@Query("update Order o set o.status = :status where o.id = :id")
-	Mono<Order> deleteOrderById(@Param(value = "id") UUID id, @Param(value = "status") boolean status);
-	
-	Mono<Order> findByOrderNo(String orderNo);
+	Mono<Order> findByOrderId(String orderId);
 }

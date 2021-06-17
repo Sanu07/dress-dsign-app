@@ -13,9 +13,6 @@ import com.fashion.dto.Feedback;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface FeedbackQueryDao extends ReactiveMongoRepository<Feedback, UUID>{
+public interface FeedbackQueryDao extends ReactiveMongoRepository<Feedback, String>{
 
-	@Modifying
-	@Query("update Feedback f set f.status = :status where f.id = :id")
-	Mono<Feedback> deleteFeedbackById(@Param(value = "id") UUID id, @Param(value = "status") boolean status);
 }

@@ -1,7 +1,5 @@
 package com.fashion.query.service;
 
-import java.util.UUID;
-
 import com.fashion.dto.Customer;
 import com.fashion.dto.Order;
 
@@ -14,12 +12,14 @@ public interface CustomerQueryService {
 
 	public Flux<Customer> getAllCustomers();
 
-	public Mono<Customer> getCustomerById(UUID customerId);
+	public Mono<Customer> getCustomerById(String customerId);
 	
 	public Mono<Customer> updateCustomer(Customer customer);
 	
 	public Mono<Customer> updateCustomerWithOrder(Order order);
 	
-	public Mono<Customer> deleteCustomerById(UUID customerId);
+	public Mono<Void> deleteCustomerById(Customer customer);
+
+	public void deleteOrderFromCustomer(Order order);
 
 }

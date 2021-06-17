@@ -2,7 +2,6 @@ package com.fashion.dto;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.Id;
 
@@ -26,7 +25,7 @@ import lombok.ToString;
 public class Customer {
 
 	@Id
-	private UUID id;
+	private String id;
 
 	private String customerId;
 
@@ -41,8 +40,6 @@ public class Customer {
 	private boolean status;
 	
 	private Set<Order> orders;
-	
-	private Set<Feedback> feedbacks;
 	
 	private Set<Payment> payments;
 

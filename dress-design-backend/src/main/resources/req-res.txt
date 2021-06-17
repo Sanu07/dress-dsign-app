@@ -1,36 +1,4 @@
 [
-    {
-        "id": "ac1abd79-3132-4447-9cec-ba853183be73",
-        "customerId": "DW1734567890",
-        "customerName": "mypassword",
-        "phone": "1234297890",
-        "email": "david@gamil.com",
-        "address": "41/56 road",
-        "orders": null,
-        "feedbacks": null,
-        "payments": null,
-        "version": 0,
-        "createdAt": "2021-06-01T18:40:35.122",
-        "createdByUserId": "DW1234567899",
-        "updatedAt": "2021-06-01T18:40:35.123"
-    },
-    {
-        "id": "6922191a-4481-447d-a3d6-64f6db5491f1",
-        "customerId": "DW1934567890",
-        "customerName": "mypassword",
-        "phone": "1234207890",
-        "email": "david@gamil.com",
-        "address": "41/56 road",
-        "orders": null,
-        "feedbacks": null,
-        "payments": null,
-        "version": 0,
-        "createdAt": "2021-06-03T01:21:13.347",
-        "createdByUserId": "DW1234567899",
-        "updatedAt": "2021-06-03T01:21:13.348"
-    }
-]
-
 {
     "customerId": "DW1934567890",
     "customerName": "mypassword",
@@ -39,4 +7,150 @@
     "address": "41/56 road",
     "createdByUserId": "DW1234567899"
 }
+
+{
+	"orderId": "DW1934567890",
+    "estimatedDeliveryDate": "mypassword",
+    "orderDeliveredOn": "1236207890",
+    "orderStatus": "david@gamil.com",
+    "measurements": {
+    	"length": {
+    		"size": "10 inch",
+    		"amount": "100"
+    	},
+    	"width": {
+    		"size": "10 inch",
+    		"amount": "100"
+    	}
+    }
+    "customer": {
+    "id": "1badbeb2-7d95-4b40-a253-963e28bee164",
+    "customerId": "DW1934567890",
+    "customerName": "mypassword",
+    "phone": "1236207890",
+    "email": "david@gamil.com",
+    "address": "41/56 road",
+    "version": 0,
+    "createdAt": "2021-06-05T11:46:55.0419257",
+    "createdByUserId": "DW1234567899",
+    "updatedAt": "2021-06-05T11:46:55.0419257",
+    "status": false,
+    "orders": null,
+    "feedbacks": null,
+    "payments": null
+}
+}
+
+{
+    "id": "b92ab0eb-35b5-43b6-8789-02c21cfa6166",
+    "orderId": "OR1234077890",
+    "createdAt": "2021-06-05T12:08:54.8365849",
+    "estimatedDeliveryDate": "2021-06-05T11:46:55.0419257",
+    "orderDeliveredOn": "2021-06-05T11:46:55.0419257",
+    "updatedAt": "2021-06-05T12:08:54.8475881",
+    "orderStatus": "CREATED",
+    "status": false,
+    "measurements": {
+        "length": {
+            "size": "10 inch",
+            "amount": 100.0
+        },
+        "width": {
+            "size": "10 inch",
+            "amount": 100.0
+        }
+    },
+    "version": 1,
+    "customer": {
+        "id": "1badbeb2-7d95-4b40-a253-963e28bee164",
+        "customerId": "DW1934567890",
+        "customerName": "mypassword",
+        "phone": "1236207890",
+        "email": "david@gamil.com",
+        "address": "41/56 road",
+        "version": 0,
+        "createdAt": "2021-06-05T11:46:55.0419257",
+        "createdByUserId": "DW1234567899",
+        "updatedAt": "2021-06-05T11:46:55.0419257",
+        "status": false,
+        "orders": null,
+        "feedbacks": null,
+        "payments": null
+    },
+    "payments": null,
+    "feedback": null
+}
+
+{
+    "id": "c5f7d1ba-a693-4d8d-8662-49ab049feade",
+    "description": "DW1934567890",
+    "rating": 4,
+    "version": 0,
+    "status": false,
+    "createdAt": "2021-06-05T12:24:51.2712779",
+    "order": {
+        "id": "b92ab0eb-35b5-43b6-8789-02c21cfa6166",
+        "orderId": "OR1234077890",
+        "createdAt": "2021-06-05T12:08:54.8365849",
+        "estimatedDeliveryDate": "2021-06-05T11:46:55.0419257",
+        "orderDeliveredOn": "2021-06-05T11:46:55.0419257",
+        "updatedAt": "2021-06-05T12:08:54.8475881",
+        "orderStatus": "CREATED",
+        "status": false,
+        "measurements": {
+            "length": {
+                "size": "10 inch",
+                "amount": 100.0
+            },
+            "width": {
+                "size": "10 inch",
+                "amount": 100.0
+            }
+        },
+        "version": 1,
+        "customer": {
+            "id": "1badbeb2-7d95-4b40-a253-963e28bee164",
+            "customerId": "DW1934567890",
+            "customerName": "mypassword",
+            "phone": "1236207890",
+            "email": "david@gamil.com",
+            "address": "41/56 road",
+            "version": 0,
+            "createdAt": "2021-06-05T11:46:55.0419257",
+            "createdByUserId": "DW1234567899",
+            "updatedAt": "2021-06-05T11:46:55.0419257",
+            "status": false,
+            "orders": null,
+            "feedbacks": null,
+            "payments": null
+        },
+        "payments": null,
+        "feedback": null
+    },
+    "customer": {
+        "id": "1badbeb2-7d95-4b40-a253-963e28bee164",
+        "customerId": "DW1934567890",
+        "customerName": "mypassword",
+        "phone": "1236207890",
+        "email": "david@gamil.com",
+        "address": "41/56 road",
+        "version": 0,
+        "createdAt": "2021-06-05T11:46:55.0419257",
+        "createdByUserId": "DW1234567899",
+        "updatedAt": "2021-06-05T11:46:55.0419257",
+        "status": false,
+        "orders": null,
+        "feedbacks": null,
+        "payments": null
+    }
+}
 --------------------------------------------------------------------------------------------------------
+													ISSUES
+--------------------------------------------------------------------------------------------------------
+1. Order_details return version as 1 after saving.
+2. Use Java8 features for CRUD.
+3. Add Hateos
+4. Add Swagger
+5. Add Actuator
+6. Make Kafka calls asynchronous
+7. creation/update/status move to baseEntity class (Inheritance)

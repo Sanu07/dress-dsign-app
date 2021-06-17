@@ -14,11 +14,7 @@ import com.fashion.dto.Customer;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface CustomerQueryDao extends ReactiveMongoRepository<Customer, UUID> {
-	
-	@Modifying
-	@Query("update Customer c set c.status = :status where c.id = :id")
-	Mono<Customer> deleteCustomerById(@Param(value = "id") UUID id, @Param(value = "status") boolean status);
+public interface CustomerQueryDao extends ReactiveMongoRepository<Customer, String> {
 	
 	Mono<Customer> findByCustomerId(String customerId);
 

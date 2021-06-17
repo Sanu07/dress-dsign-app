@@ -17,6 +17,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
@@ -46,10 +47,9 @@ public class KafkaListenerConfig {
 		configurer.configure(factory, kafkaConsumerFactory.getIfAvailable(
 				() -> new DefaultKafkaConsumerFactory<>(this.kafkaProperties.buildConsumerProperties())));
 		factory.setConcurrency(3);
-		// factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
+		factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL);
 		factory.setErrorHandler(((thrownException, data) -> {
 			log.info("Exception in consumerConfig is {} and the record is {}", thrownException.getMessage(), data);
-			// persist
 		}));
 		factory.setRetryTemplate(retryTemplate());
 		factory.setRecoveryCallback((context -> {

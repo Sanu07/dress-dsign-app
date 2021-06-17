@@ -29,7 +29,6 @@ public class UserCommandKafkaListener implements AcknowledgingMessageListener<St
 	public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
 		if (consumerRecord.partition() == 3) return;
 		log.info("ConsumerRecord : {} ", consumerRecord);
-		acknowledgment.acknowledge();
 		User user = null;
 		if (consumerRecord.partition() == 1) {
 			try {
@@ -53,12 +52,13 @@ public class UserCommandKafkaListener implements AcknowledgingMessageListener<St
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			Mono<User> dbUser = userService.getUserById(user.getId());
+			Mono<User> dbUser = userService.getUserById(user.getId().toString());
 			dbUser.doOnNext(usr -> {
 				userService.deleteUserById(usr.getId())
 						.subscribe(u -> log.info("User updated in MongoDB {} ", u));
 			});
 		}
+		acknowledgment.acknowledge();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.fashion.command.service.impl;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -25,11 +26,13 @@ public class FeedbackCommandServiceImpl implements FeedbackCommandService {
 	public Feedback saveFeedback(Feedback feedback) {
 		Feedback savedFeedback = feedbackDao.save(feedback);
 		try {
-			kafkaProducer.sendEvent(EntityToDTOConverter.createDTOFeedback(savedFeedback), AppConstants.DRESS_GENERAL_FEEDBACK_EVENT_KEY,
-					AppConstants.DRESS_GENERAL_EVENTS_TOPIC, AppConstants.FEEDBACK_EVENT_PARTITION);
+			kafkaProducer.sendEvent(EntityToDTOConverter.createDTOFeedback(savedFeedback),
+					AppConstants.DRESS_GENERAL_FEEDBACK_EVENT_KEY, AppConstants.DRESS_GENERAL_EVENTS_TOPIC,
+					AppConstants.FEEDBACK_EVENT_PARTITION);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+
 		return savedFeedback;
 	}
 
@@ -41,5 +44,10 @@ public class FeedbackCommandServiceImpl implements FeedbackCommandService {
 	@Override
 	public void deleteFeedback(UUID feedbackId) {
 		feedbackDao.deleteById(feedbackId);
+	}
+
+	@Override
+	public Optional<Feedback> findFeedbackById(UUID feedbackId) {
+		return feedbackDao.findById(feedbackId);
 	}
 }

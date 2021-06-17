@@ -12,7 +12,5 @@ import com.fashion.entity.Order;
 
 @Repository
 public interface OrderCommandDao extends JpaRepository<Order, UUID> {
-	@Modifying
-	@Query("update Order o set o.status = :status where o.id = :id")
-	Order deleteOrderById(@Param(value = "id") UUID id, @Param(value = "status") boolean status);
+	
 }

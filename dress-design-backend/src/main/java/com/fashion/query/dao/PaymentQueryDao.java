@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.fashion.dto.Payment;
 
 @Repository
-public interface PaymentQueryDao extends ReactiveMongoRepository<Payment, UUID> {
+public interface PaymentQueryDao extends ReactiveMongoRepository<Payment, String> {
 
 }

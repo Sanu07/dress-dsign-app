@@ -29,7 +29,7 @@ public class UserQueryController {
 	}
 
 	@GetMapping("/{uuid}")
-	public Mono<User> getCustomerById(@PathVariable UUID uuid) {
+	public Mono<User> getCustomerById(@PathVariable String uuid) {
 		return userService.getUserById(uuid);
 	}
 

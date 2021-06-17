@@ -1,44 +1,30 @@
 package com.fashion.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.persistence.Version;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "USER_DETAILS")
-public class User implements Serializable {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class User extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type = "pg-uuid")
-	@Column(name = "ID", updatable = false)
-	private UUID id;
 
 	@Column(name = "FULL_NAME", nullable = false)
 	private String fullName;
@@ -55,19 +41,4 @@ public class User implements Serializable {
 	@Column(name = "PHONE", nullable = false)
 	private String phone;
 
-	@Version
-	private int version;
-	
-	@Column(name = "IS_ACTIVE")
-	private boolean status;
-
-	@CreationTimestamp
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	@Column(name = "CREATED_AT")
-	private LocalDateTime createdAt;
-
-	@UpdateTimestamp
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	@Column(name = "LAST_UPDATED_AT")
-	private LocalDateTime updatedAt;
 }

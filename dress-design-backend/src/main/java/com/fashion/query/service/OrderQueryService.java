@@ -1,7 +1,5 @@
 package com.fashion.query.service;
 
-import java.util.UUID;
-
 import org.springframework.http.ResponseEntity;
 
 import com.fashion.dto.Order;
@@ -11,15 +9,18 @@ import reactor.core.publisher.Mono;
 
 public interface OrderQueryService {
 	
-	public ResponseEntity<Order> saveOrder(Order order);
+	ResponseEntity<Order> saveOrder(Order order);
 
-	public Flux<Order> getAllOrders();
+	Flux<Order> getAllOrders();
 
-	public Mono<Order> getOrderById(UUID orderId);
+	Mono<Order> getOrderById(String orderId);
 	
-	public ResponseEntity<Order> updateOrder(Order order);
+	ResponseEntity<Order> updateOrder(Order order);
 	
-	public void updateCustomerWithOrder(Order order);
+	void updateCustomerWithOrder(Order order);
 
-	public Mono<Order> deleteOrderById(UUID orderId);
+	Mono<Order> deleteOrderById(Order order);
+
+	void deleteOrdersByCutomerId(String customerId);
+	
 }

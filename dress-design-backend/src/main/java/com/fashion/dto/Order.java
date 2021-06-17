@@ -3,7 +3,6 @@ package com.fashion.dto;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,9 +27,9 @@ import lombok.NoArgsConstructor;
 public class Order {
 
 	@Id
-	private UUID id;
+	private String id;
 
-	private String orderNo;
+	private String orderId;
 
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private LocalDateTime createdAt;

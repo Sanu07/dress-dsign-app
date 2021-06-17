@@ -30,7 +30,6 @@ public class CustomerCommandKafkaListener implements AcknowledgingMessageListene
 	@Override
 	public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
 		log.info("ConsumerRecord : {} ", consumerRecord);
-		acknowledgment.acknowledge();
 		Customer customer = null;
 		if (consumerRecord.partition() == 1) {
 			try {
@@ -50,16 +49,17 @@ public class CustomerCommandKafkaListener implements AcknowledgingMessageListene
 			}
 		} else {
 			try {
-				customer = mapper.readValue(consumerRecord.value(), Customer.class);
+				String customerId = mapper.readValue(consumerRecord.value(), String.class);
+				Mono<Customer> dbCustomer = customerService.getCustomerById(customerId);
+				dbCustomer.subscribe(cust -> {
+					customerService.deleteCustomerById(cust)
+							.subscribe(c -> log.info("Customer updated(deleted) in MongoDB {} ", c));
+				});
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			Mono<Customer> dbCustomer = customerService.getCustomerById(customer.getId());
-			dbCustomer.doOnNext(cust -> {
-				customerService.deleteCustomerById(cust.getId())
-						.subscribe(c -> log.info("Customer updated in MongoDB {} ", c));
-			});
 		}
+		acknowledgment.acknowledge();
 	}
 
 }

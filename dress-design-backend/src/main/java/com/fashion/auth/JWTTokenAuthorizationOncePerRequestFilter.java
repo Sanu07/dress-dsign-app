@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +23,7 @@ import com.fashion.util.JWTTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 
 @Component
+@Profile("!test")
 public class JWTTokenAuthorizationOncePerRequestFilter extends OncePerRequestFilter {
 
 	@Autowired

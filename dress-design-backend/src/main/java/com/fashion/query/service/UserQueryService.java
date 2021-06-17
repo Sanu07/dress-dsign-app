@@ -1,7 +1,5 @@
 package com.fashion.query.service;
 
-import java.util.UUID;
-
 import com.fashion.dto.User;
 
 import reactor.core.publisher.Flux;
@@ -9,13 +7,14 @@ import reactor.core.publisher.Mono;
 
 public interface UserQueryService {
 	
-	public Mono<User> saveUser(User user);
+	Mono<User> saveUser(User user);
 
-	public Flux<User> getAllUsers();
+	Flux<User> getAllUsers();
 
-	public Mono<User> getUserById(UUID userId);
+	Mono<User> getUserById(String userId);
 	
-	public Mono<User> updateUser(User user);
+	Mono<User> updateUser(User user);
 
-	public Mono<User> deleteUserById(UUID userId);
+	Mono<User> deleteUserById(String userId);
+
 }

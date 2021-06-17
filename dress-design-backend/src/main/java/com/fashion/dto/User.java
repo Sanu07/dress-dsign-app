@@ -1,7 +1,6 @@
 package com.fashion.dto;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.persistence.Id;
 
@@ -22,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Document(collection = "user_details")
 public class User {
 	@Id
-	private UUID id;
+	private String id;
 
 	private String fullName;
 

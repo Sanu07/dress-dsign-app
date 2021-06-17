@@ -10,6 +10,6 @@ public interface CustomerCommandService {
 
 	public Customer updateCustomer(Customer customer);
 
-	public void deleteCustomer(UUID customerId);
+	public Customer deleteCustomer(UUID customerId);
 
 }

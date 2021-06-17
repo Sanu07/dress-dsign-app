@@ -1,7 +1,5 @@
 package com.fashion.query.service;
 
-import java.util.UUID;
-
 import org.springframework.http.ResponseEntity;
 
 import com.fashion.dto.Feedback;
@@ -11,15 +9,19 @@ import reactor.core.publisher.Mono;
 
 public interface FeedbackQueryService {
 	
-	public ResponseEntity<Feedback> saveFeedback(Feedback feedback);
+	ResponseEntity<Feedback> saveFeedback(Feedback feedback);
 
-	public Flux<Feedback> getAllFeedbacks();
+	Flux<Feedback> getAllFeedbacks();
 
-	public Mono<Feedback> getFeedbackById(UUID feedbackId);
+	Mono<Feedback> getFeedbackById(String feedbackId);
 	
-	public ResponseEntity<Feedback> updateFeedback(Feedback feedback);
+	ResponseEntity<Feedback> updateFeedback(Feedback feedback);
 	
-	public void updateOrderWithFeedback(Feedback feedback);
+	void updateOrderWithFeedback(Feedback feedback);
 	
-	public Mono<Feedback> deleteFeedbackById(UUID feedbackId);
+	Mono<Feedback> deleteFeedbackById(String feedbackId);
+
+	void deleteFeedbacksByCustomerId(String customerId);
+	
+	void deleteFeedbacksByOrderId(String orderId);
 }

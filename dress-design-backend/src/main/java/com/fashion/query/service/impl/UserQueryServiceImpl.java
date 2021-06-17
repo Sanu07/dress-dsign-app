@@ -1,7 +1,5 @@
 package com.fashion.query.service.impl;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import com.fashion.dto.User;
@@ -24,7 +22,7 @@ public class UserQueryServiceImpl implements UserQueryService {
 	}
 
 	@Override
-	public Mono<User> getUserById(UUID userId) {
+	public Mono<User> getUserById(String userId) {
 		return userDao.findById(userId);
 	}
 	
@@ -39,8 +37,9 @@ public class UserQueryServiceImpl implements UserQueryService {
 	}
 
 	@Override
-	public Mono<User> deleteUserById(UUID userId) {
-		return userDao.deleteUserById(userId, false);
+	public Mono<User> deleteUserById(String userId) {
+		userDao.deleteById(userId);
+		return null;
 	}
 
 }

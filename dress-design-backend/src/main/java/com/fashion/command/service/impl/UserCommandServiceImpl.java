@@ -12,9 +12,11 @@ import com.fashion.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserCommandServiceImpl implements UserCommandService {
 
 	private UserCommandDao userDao;
@@ -27,7 +29,8 @@ public class UserCommandServiceImpl implements UserCommandService {
 			kafkaProducer.sendEvent(savedUser, AppConstants.DRESS_USER_CREATE_EVENT_KEY,
 					AppConstants.DRESS_USER_EVENTS_TOPIC, AppConstants.CREATE_EVENT_PARTITION);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			log.error("UserCommandServiceImpl::saveUser -> JSON processing exception {} " + e.getMessage());
+			return null;
 		}
 		return savedUser;
 	}

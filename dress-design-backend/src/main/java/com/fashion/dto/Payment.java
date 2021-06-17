@@ -1,7 +1,6 @@
 package com.fashion.dto;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class Payment {
 
 	@Id
-	private UUID id;
+	private String id;
 
 	@Enumerated(EnumType.STRING)
 	private PaymentTypeEnum paymentType;

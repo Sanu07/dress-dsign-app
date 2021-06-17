@@ -2,7 +2,6 @@ package com.fashion.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.persistence.Id;
 
@@ -26,7 +25,7 @@ public class Feedback implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private UUID id;
+	private String id;
 
 	private String description;
 

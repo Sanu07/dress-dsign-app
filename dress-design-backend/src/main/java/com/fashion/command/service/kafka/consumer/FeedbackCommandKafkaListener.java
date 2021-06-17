@@ -28,7 +28,6 @@ public class FeedbackCommandKafkaListener implements AcknowledgingMessageListene
 	public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
 		if (consumerRecord.partition() != 0) return;
 		log.info("ConsumerRecord : {} ", consumerRecord);
-		acknowledgment.acknowledge();
 		Feedback feedback = null;
 		try {
 			feedback = mapper.readValue(consumerRecord.value(), Feedback.class);
@@ -36,6 +35,7 @@ public class FeedbackCommandKafkaListener implements AcknowledgingMessageListene
 			e.printStackTrace();
 		}
 		feedbackService.saveFeedback(feedback);
+		acknowledgment.acknowledge();
 	}
-
+	
 }

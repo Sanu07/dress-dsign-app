@@ -28,7 +28,6 @@ public class OrderCommandKafkaListener implements AcknowledgingMessageListener<S
 	@Override
 	public void onMessage(ConsumerRecord<String, String> consumerRecord, Acknowledgment acknowledgment) {
 		log.info("ConsumerRecord : {} ", consumerRecord);
-		acknowledgment.acknowledge();
 		Order order = null;
 		if (consumerRecord.partition() == 1) {
 			try {
@@ -54,11 +53,12 @@ public class OrderCommandKafkaListener implements AcknowledgingMessageListener<S
 			}
 			Mono<Order> dbOrder = orderService.getOrderById(order.getId());
 			dbOrder.doOnNext(ord -> {
-				orderService.deleteOrderById(ord.getId())
+				orderService.deleteOrderById(ord)
 						.subscribe(o -> log.info("Order updated in MongoDB {} ", o));
 				
 			});
 		}
+		acknowledgment.acknowledge();
 	}
 
 }

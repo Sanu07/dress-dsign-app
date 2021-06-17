@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import com.fashion.enums.PaymentTypeEnum;
@@ -36,9 +37,9 @@ import lombok.NoArgsConstructor;
 public class Payment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Type(type = "pg-uuid")
-	@Column(name = "_ID", updatable = false)
+	@GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(name = "_ID", columnDefinition = "BINARY(16)")
 	private UUID id;
 
 	@Enumerated(EnumType.STRING)
@@ -66,4 +67,5 @@ public class Payment {
 	
 	@Version
 	private int version;
+	
 }
