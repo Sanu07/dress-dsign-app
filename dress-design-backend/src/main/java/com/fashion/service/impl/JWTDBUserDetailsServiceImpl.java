@@ -3,6 +3,7 @@ package com.fashion.service.impl;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +14,7 @@ import com.fashion.command.dao.UserCommandDao;
 import com.fashion.entity.User;
 
 @Service
+@ConditionalOnExpression("${service.enabled:true}")
 public class JWTDBUserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired

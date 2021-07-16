@@ -16,6 +16,9 @@ import { TranslationConfigModule } from './module/translation-config/translation
 import { AppConfig } from 'src/config/app.config';
 import { AddOrderModalComponent } from './components/orders/modals/add-order-modal/add-order-modal.component';
 import { FeedbackComponent } from './components/utility/feedback/feedback.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { AddCustomerComponent } from './components/customer/add-customer/add-customer.component';
+import { ListCustomerComponent } from './components/customer/list-customer/list-customer.component';
 
 export function initResources(config: AppConfig, translate: TranslationConfigModule) {
   return () => config.load(translate);
@@ -29,7 +32,7 @@ export function initResources(config: AppConfig, translate: TranslationConfigMod
     LayoutComponent,
     WelcomeComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

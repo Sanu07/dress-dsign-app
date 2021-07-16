@@ -1,5 +1,6 @@
 package com.fashion.command.controller;
 
+import java.net.URI;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fashion.command.service.CustomerCommandService;
 import com.fashion.entity.Customer;
@@ -27,8 +29,9 @@ public class CustomerCommandController {
 	
 	@PostMapping
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
-		Customer savedCustomer = customersService.saveCustomer(customer);
-		return ResponseEntity.created(null).body(savedCustomer);
+		final Customer savedCustomer = customersService.saveCustomer(customer);
+		final URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{uuid}").buildAndExpand(savedCustomer.getId()).toUri();
+		return ResponseEntity.created(uri).body(savedCustomer);
 	}
 	
 	@PutMapping

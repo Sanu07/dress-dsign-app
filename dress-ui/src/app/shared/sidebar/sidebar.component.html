@@ -11,23 +11,23 @@
 
     <h2 matSubheader>Pages</h2>
 
-    <a mat-list-item routerLink="/" (click)="onClose()">
+    <a mat-list-item routerLink="/dashboard">
         <mat-icon>dashboard</mat-icon>
         <span class="nav-caption">{{ 'dashboard' | translate }}</span>
     </a>
-    <a mat-list-item routerLink="/" (click)="onClose()">
+    <a mat-list-item routerLink="/user">
         <mat-icon>people</mat-icon>
-        <span class="nav-caption">User</span>
+        <span class="nav-caption">Users</span>
     </a>
-    <a mat-list-item routerLink="/customers" (click)="onClose()">
+    <a mat-list-item routerLink="/customer">
         <mat-icon>groups</mat-icon>
         <span class="nav-caption">{{ 'customers' | translate }}</span>
     </a>
-    <a mat-list-item routerLink="/orders" (click)="onClose()">
+    <a mat-list-item routerLink="/orders">
         <mat-icon>note_add</mat-icon>
         <span class="nav-caption">{{ 'orders' | translate }}</span>
     </a>
-    <a mat-list-item routerLink="/payments" (click)="onClose()">
+    <a mat-list-item routerLink="/payments">
         <mat-icon>payment</mat-icon>
         <span class="nav-caption">{{ 'payments' | translate }}</span>
     </a>
@@ -36,7 +36,7 @@
 
     <h2 matSubheader>{{ 'services' | translate }}</h2>
 
-    <a mat-list-item routerLink="/contact-us" (click)="onClose()">
+    <a mat-list-item routerLink="/feedback">
         <mat-icon>feedback</mat-icon>
         <span class="nav-caption">Feedbacks</span>
     </a>

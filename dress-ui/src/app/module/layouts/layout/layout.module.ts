@@ -17,6 +17,9 @@ import { AddOrderComponent } from 'src/app/components/orders/add-order/add-order
 import { AddOrderModalComponent } from 'src/app/components/orders/modals/add-order-modal/add-order-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FeedbackComponent } from 'src/app/components/utility/feedback/feedback.component';
+import { CustomerComponent } from 'src/app/components/customer/customer.component';
+import { AddCustomerComponent } from 'src/app/components/customer/add-customer/add-customer.component';
+import { ListCustomerComponent } from 'src/app/components/customer/list-customer/list-customer.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { FeedbackComponent } from 'src/app/components/utility/feedback/feedback.
     ListOrdersComponent,
     AddOrderComponent,
     AddOrderModalComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    CustomerComponent,
+    AddCustomerComponent,
+    ListCustomerComponent
   ],
   imports: [
     RouterModule.forChild(LayoutRoutes),
