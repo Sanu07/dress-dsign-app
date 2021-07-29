@@ -1,16 +1,56 @@
-<mat-list>
-   <h3 mat-subheader>Folders</h3>
-   <mat-list-item *ngFor="let folder of folders; last as last">
-      <mat-icon mat-list-icon>folder</mat-icon>
-      <h4 mat-line>{{folder.name}}</h4>
-      <p mat-line class="demo-2"> {{folder.updated}} </p>
-      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-   </mat-list-item>
-   <mat-divider></mat-divider>
-   <h3 mat-subheader>Notes</h3>
-   <mat-list-item *ngFor="let note of notes">
-      <mat-icon mat-list-icon>note</mat-icon>
-      <h4 mat-line>{{note.name}}</h4>
-      <p mat-line class="demo-2"> {{note.updated}} </p>
-   </mat-list-item>
-</mat-list>
+<mat-card>
+    <mat-card-header>
+        <mat-card-subtitle>Personal Details</mat-card-subtitle>
+        <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs (click)="onEditUserModal()">
+            <mat-icon>
+                edit_note
+            </mat-icon>
+        </button>
+    </mat-card-header>
+    <mat-card-content>
+        <div fxFlex="30" class="faded-small">
+
+        </div>
+        <div fxFlex="70" class="faded-small">
+            <p>Name: {{user.fullName}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Phone: {{user.phone}}</p>
+            <p>Id: {{user.loginId}}</p>
+            <p>Registered On: {{user.createdAt | date:'E d LLL yyyy h:mm a'}}</p>
+            <p>Last Updated On : {{user.updatedAt | date:'E d LLL yyyy h:mm a'}}</p>
+            <p>Active: <span [ngStyle]="{'color': user.status ? 'green' : 'red'}">{{user.status ? "TRUE" :
+                    "FALSE"}}</span></p>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+        *ngFor="let user of users; trackBy: trackById">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="faded-small">
+                Name : &nbsp;&nbsp;{{user.fullName}}
+            </mat-panel-title>
+            <mat-panel-description>
+                <div class="faded-small">{{user.email}}</div>
+                <div class="faded-small" fxFlex fxLayout fxLayoutAlign="flex-end">{{user.createdAt | date:'E d LLL
+                    yyyy'}}
+                </div>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+            <div fxFlex="30" class="faded-small">
+
+            </div>
+            <div fxFlex="70" class="faded-small">
+                <p>Name: {{user.fullName}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>Phone: {{user.phone}}</p>
+                <p>Id: {{user.loginId}}</p>
+                <p>Registered On: {{user.createdAt | date:'E d LLL yyyy h:mm a'}}</p>
+                <p>Last Updated On : {{user.updatedAt | date:'E d LLL yyyy h:mm a'}}</p>
+                <p>Active: <span [ngStyle]="{'color': user.status ? 'green' : 'red'}">{{user.status ? "TRUE" :
+                        "FALSE"}}</span></p>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>

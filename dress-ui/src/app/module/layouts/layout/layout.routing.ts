@@ -4,7 +4,7 @@ import { DashboardComponent } from "src/app/components/dashboard/dashboard.compo
 import { OrdersComponent } from "src/app/components/orders/orders.component";
 import { PaymentsComponent } from "src/app/components/payments/payments.component";
 import { UserComponent } from "src/app/components/user/user.component";
-import { FeedbackComponent } from "src/app/components/utility/feedback/feedback.component";
+import { FeedbackComponent } from "src/app/components/feedback/feedback/feedback.component";
 
 export const LayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },

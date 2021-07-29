@@ -33,6 +33,8 @@ public class User {
 
 	private String phone;
 	
+	private String imageFilePath;
+	
 	private boolean status;
 
 	private int version;

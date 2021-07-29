@@ -11,6 +11,18 @@
                     {{template}}
                 </mat-chip>
             </mat-chip-list>
+            <div fxFlex fxLayout fxLayoutGap="5px" fxLayoutAlign="flex-end">
+                <mat-form-field appearance="">
+                    <mat-label>Cutomer Id</mat-label>
+                    <input type="text" [(ngModel)]='customerId' matInput placeholder="Ex. SG123456" value="">
+                </mat-form-field>
+                <div class="example-button-row">
+                    <button mat-stroked-button (click)="onConfirmCustomerId(customerId)">Confirm Customer Id</button>
+                </div>
+                <div class="example-button-row">
+                    <button mat-stroked-button (click)="onGetCustomerDetails(customerId)">Details</button>
+                </div>
+            </div>
         </mat-card-content>
     </mat-card>
     <mat-card *ngIf="isKurti">
@@ -23,81 +35,149 @@
             </button>
         </mat-card-header>
         <mat-card-content>
-            <div fxFlex fxLayoutAlign="start stretch" fxLayoutGap="15px">
-                <table width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+            <div *ngIf="measurementsDataChunks" fxFlex fxLayoutAlign="start stretch" fxLayoutGap="15px">
+                <table *ngIf="measurementsDataChunks[0]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
                     <tr>
-                        <th>Company</th>
-                        <th>Contact</th>
-                        <th>Country</th>
-                      </tr>
-                      <tr>
-                        <td width="40%">Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                      </tr>
-                      <tr>
-                        <td width="40%">fwe fwer rfte</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                      </tr>
-                  </table>
-                  <table width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk1 of measurementsDataChunks[0]; let i = index">
+                        <td width="40%">{{chunk1.name}}</td>
+                        <td>{{chunk1.size}}</td>
+                        <td>{{chunk1.amount}}</td>
+                    </tr>
+                </table>
+                <table *ngIf="measurementsDataChunks[1]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
                     <tr>
-                        <th>Company</th>
-                        <th>Contact</th>
-                        <th>Country</th>
-                      </tr>
-                      <tr>
-                        <td width="40%">fwe fwer rfte</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                      </tr>
-                      <tr>
-                        <td width="40%">fwe fwer rfte</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                      </tr>
-                  </table>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk2 of measurementsDataChunks[1]; let i = index">
+                        <td width="40%">{{chunk2.name}}</td>
+                        <td>{{chunk2.size}}</td>
+                        <td>{{chunk2.amount}}</td>
+                    </tr>
+                </table>
             </div>
         </mat-card-content>
     </mat-card>
     <mat-card *ngIf="isSalwar">
         <mat-card-header>
             <mat-card-subtitle>Salwar</mat-card-subtitle>
-            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
-                <mat-icon (click)="toggleBadgeVisibility()">
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <mat-icon (click)="onOpenOrder('Salwar')">
                     edit_note
                 </mat-icon>
             </button>
         </mat-card-header>
         <mat-card-content>
-            Text content Salwar
+            <div *ngIf="measurementsDataChunks" fxFlex fxLayoutAlign="start stretch" fxLayoutGap="15px">
+                <table *ngIf="measurementsDataChunks[0]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk1 of measurementsDataChunks[0]; let i = index">
+                        <td width="40%">{{chunk1.name}}</td>
+                        <td>{{chunk1.size}}</td>
+                        <td>{{chunk1.amount}}</td>
+                    </tr>
+                </table>
+                <table *ngIf="measurementsDataChunks[1]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk2 of measurementsDataChunks[1]; let i = index">
+                        <td width="40%">{{chunk2.name}}</td>
+                        <td>{{chunk2.size}}</td>
+                        <td>{{chunk2.amount}}</td>
+                    </tr>
+                </table>
+            </div>
         </mat-card-content>
     </mat-card>
     <mat-card *ngIf="isShirt">
         <mat-card-header>
             <mat-card-subtitle>Shirt</mat-card-subtitle>
-            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
-                <mat-icon (click)="toggleBadgeVisibility()">
-                    add
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <mat-icon (click)="onOpenOrder('Shirt')">
+                    edit_note
                 </mat-icon>
             </button>
         </mat-card-header>
         <mat-card-content>
-            Text content Shirt
+            <div *ngIf="measurementsDataChunks" fxFlex fxLayoutAlign="start stretch" fxLayoutGap="15px">
+                <table *ngIf="measurementsDataChunks[0]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk1 of measurementsDataChunks[0]; let i = index">
+                        <td width="40%">{{chunk1.name}}</td>
+                        <td>{{chunk1.size}}</td>
+                        <td>{{chunk1.amount}}</td>
+                    </tr>
+                </table>
+                <table *ngIf="measurementsDataChunks[1]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk2 of measurementsDataChunks[1]; let i = index">
+                        <td width="40%">{{chunk2.name}}</td>
+                        <td>{{chunk2.size}}</td>
+                        <td>{{chunk2.amount}}</td>
+                    </tr>
+                </table>
+            </div>
         </mat-card-content>
     </mat-card>
     <mat-card *ngIf="isPant">
         <mat-card-header>
             <mat-card-subtitle>Pant</mat-card-subtitle>
-            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
-                <mat-icon (click)="toggleBadgeVisibility()">
-                    add
+            <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <mat-icon (click)="onOpenOrder('Pant')">
+                    edit_note
                 </mat-icon>
             </button>
         </mat-card-header>
         <mat-card-content>
-            Text content pant
+            <div *ngIf="measurementsDataChunks" fxFlex fxLayoutAlign="start stretch" fxLayoutGap="15px">
+                <table *ngIf="measurementsDataChunks[0]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk1 of measurementsDataChunks[0]; let i = index">
+                        <td width="40%">{{chunk1.name}}</td>
+                        <td>{{chunk1.size}}</td>
+                        <td>{{chunk1.amount}}</td>
+                    </tr>
+                </table>
+                <table *ngIf="measurementsDataChunks[1]" width="100" border="1" cellspacing="0" cellpadding="0" fxFlex>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let chunk2 of measurementsDataChunks[1]; let i = index">
+                        <td width="40%">{{chunk2.name}}</td>
+                        <td>{{chunk2.size}}</td>
+                        <td>{{chunk2.amount}}</td>
+                    </tr>
+                </table>
+            </div>
         </mat-card-content>
     </mat-card>
+    <div class="example-button-row" *ngIf="measurementsData && measurementsData.length > 0">
+        <button mat-stroked-button (click)="onSaveOrder()">Save</button>
+    </div>
 </div>

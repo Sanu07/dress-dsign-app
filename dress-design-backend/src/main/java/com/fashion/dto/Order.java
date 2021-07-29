@@ -1,7 +1,7 @@
 package com.fashion.dto;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EnumType;
@@ -52,7 +52,7 @@ public class Order {
 	
 	private String customerId;
 
-    private Map<String, Measurements> measurements;
+    private List<Measurements> measurements;
 	
 	private Set<Payment> payments;
 	

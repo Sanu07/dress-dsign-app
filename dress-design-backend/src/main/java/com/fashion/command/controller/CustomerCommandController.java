@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fashion.command.service.CustomerCommandService;
 import com.fashion.entity.Customer;
+import com.fashion.util.ReferenceIDGenerator;
 
 @RestController
 @RequestMapping("/customers") 
@@ -29,6 +30,8 @@ public class CustomerCommandController {
 	
 	@PostMapping
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+		customer.setStatus(true);
+		customer.setCustomerId(ReferenceIDGenerator.getGeneratedCustomerId(customer.getCustomerName(), customer.getPhone()));
 		final Customer savedCustomer = customersService.saveCustomer(customer);
 		final URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{uuid}").buildAndExpand(savedCustomer.getId()).toUri();
 		return ResponseEntity.created(uri).body(savedCustomer);

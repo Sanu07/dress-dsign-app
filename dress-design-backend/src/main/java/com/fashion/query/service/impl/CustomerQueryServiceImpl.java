@@ -90,5 +90,10 @@ public class CustomerQueryServiceImpl extends BaseServiceImpl implements Custome
 			}
 		});
 	}
+
+	@Override
+	public Mono<Customer> getCustomerByCustomerId(String customerId) {
+		return customerDao.findByCustomerId(customerId);
+	}
 	
 }

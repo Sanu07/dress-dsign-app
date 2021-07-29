@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,11 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fashion.command.service.UserCommandService;
 import com.fashion.entity.User;
+import com.fashion.util.FilesUtil;
 import com.fashion.util.ReferenceIDGenerator;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "localhost:4200")
+@CrossOrigin("*")
 public class UserCommandController {
 
 	Logger logger = LoggerFactory.getLogger(UserCommandController.class);
@@ -29,10 +31,13 @@ public class UserCommandController {
 	UserCommandService usersService;
 
 	@PostMapping
-	public User saveUser(@RequestBody User user) {
+	public User saveUser(@ModelAttribute User user) {
 		User savedUser = null;
 		if (user != null) {
-			user.setLoginId(ReferenceIDGenerator.getGeneratedId(user.getFullName(), user.getPhone()));
+			user.setStatus(true);
+			user.setLoginId(ReferenceIDGenerator.getGeneratedCustomerId(user.getFullName(), user.getPhone()));
+			String imageFilePath = FilesUtil.uploadFile(user.getFile(), user.getLoginId());
+			user.setImageFilePath(imageFilePath);
 		}
 		try {
 			savedUser = usersService.saveUser(user);

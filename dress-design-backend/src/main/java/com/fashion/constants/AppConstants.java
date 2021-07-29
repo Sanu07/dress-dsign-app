@@ -31,4 +31,6 @@ public class AppConstants {
 	public static final String DRESS_CUSTOMER_GROUP_ID = "customer-group-id";
 	public static final String DRESS_ORDER_GROUP_ID = "customer-group-id";
 	public static final String DRESS_GENERAL_GROUP_ID = "customer-group-id";
+	
+	public static final String UPLOADED_FOLDER = "src/main/resources/images/";
 }

@@ -1,10 +1,9 @@
 package com.fashion.util;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import com.fashion.dto.Measurements;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class MeasurementsConverter implements AttributeConverter<Map<String, Measurements>, String> {
+public class MeasurementsConverter implements AttributeConverter<List<Measurements>, String> {
 
 	private final Logger logger = LoggerFactory.getLogger(MeasurementsConverter.class);
 
@@ -22,7 +21,7 @@ public class MeasurementsConverter implements AttributeConverter<Map<String, Mea
 	private ObjectMapper objectMapper = new ObjectMapper();
 
 	@Override
-	public String convertToDatabaseColumn(Map<String, Measurements> measurementsInfo) {
+	public String convertToDatabaseColumn(List<Measurements> measurementsInfo) {
 		String measurementsInfoJson = null;
 		try {
 			measurementsInfoJson = objectMapper.writeValueAsString(measurementsInfo);
@@ -33,10 +32,10 @@ public class MeasurementsConverter implements AttributeConverter<Map<String, Mea
 	}
 
 	@Override
-	public Map<String, Measurements> convertToEntityAttribute(String measurementsInfoJson) {
-		Map<String, Measurements> measurementsInfo = null;
+	public List<Measurements> convertToEntityAttribute(String measurementsInfoJson) {
+		List<Measurements> measurementsInfo = null;
 		try {
-			measurementsInfo = objectMapper.readValue(measurementsInfoJson, Map.class);
+			measurementsInfo = objectMapper.readValue(measurementsInfoJson, List.class);
 		} catch (final IOException e) {
 			logger.error("JSON reading error", e);
 		}

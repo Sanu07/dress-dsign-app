@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AddOrderData } from 'src/app/models/add-order.model';
+import { IMeasurements } from 'src/app/models/order';
 
 @Component({
   selector: 'app-add-order-modal',
@@ -9,10 +9,10 @@ import { AddOrderData } from 'src/app/models/add-order.model';
   styleUrls: ['./add-order-modal.component.scss']
 })
 export class AddOrderModalComponent implements OnInit {
-  public s = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  
   constructor(
     public dialogRef: MatDialogRef<AddOrderModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: AddOrderData[],
+    @Inject(MAT_DIALOG_DATA) public data: IMeasurements[],
     private fb: FormBuilder
   ) { }
 
@@ -28,12 +28,9 @@ export class AddOrderModalComponent implements OnInit {
     this.populateTemplateOrderFields();
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   addOrderField() {
     this.order.push(this.fb.group({ name: '', size: '', amount: '' }));
+    console.log(this.order);
   }
 
   populateTemplateOrderFields() {

@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-    Hi {{data?.name}}
+    Measurements
     <button mat-icon-button fxFlex fxLayout fxLayoutAlign="flex-end">
         <mat-icon (click)="addOrderField()">add</mat-icon>
     </button>
@@ -29,23 +29,5 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="order.value" cdkFocusInitial>Ok</button>
+    <button mat-button [mat-dialog-close]="order.value" cdkFocusInitial>Done</button>
 </div>
-
-<ng-template #customTemplate>
-    <div class="add-order-modal">
-        <mat-form-field appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput type="text">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Size</mat-label>
-            <input matInput type="text">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label>Amount</mat-label>
-            <input matInput type="number" class="example-right-align">
-        </mat-form-field>
-    </div>
-</ng-template>

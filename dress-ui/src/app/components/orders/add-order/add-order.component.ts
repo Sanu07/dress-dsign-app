@@ -1,12 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MatChip, MatDialog } from '@angular/material';
-import { AddOrderData } from 'src/app/models/add-order.model';
+import { IMeasurements, IOrder, Order } from 'src/app/models/order';
 import { AddOrderModalComponent } from '../modals/add-order-modal/add-order-modal.component';
+import * as _ from 'lodash';
+import * as moment from 'moment';
+import { OrderService } from 'src/app/services/order.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/models/customer';
 
 const KURTI = 'Kurti';
 const SALWAR = "Salwar";
 const SHIRT = "Shirt";
 const PANT = "Pant";
+
+const kurtiDefaultMeasurements: IMeasurements[] = [{ name: 'length', size: '20 cm', amount: 100 }]
+const salwarDefaultMeasurements: IMeasurements[] = [{ name: 'length', size: '20 cm', amount: 100 }]
+const shirtDefaultMeasurements: IMeasurements[] = [{ name: 'length', size: '20 cm', amount: 100 }]
+const pantDefaultMeasurements: IMeasurements[] = [{ name: 'length', size: '20 cm', amount: 100 }]
 
 @Component({
   selector: 'app-add-order',
@@ -20,20 +30,33 @@ export class AddOrderComponent implements OnInit {
   public isSalwar: boolean = false;
   public isPant: boolean = false;
   public isShirt: boolean = false;
-  public measurementsData: AddOrderData[];
+  public measurementsData: IMeasurements[];
+  public measurementsDataChunks: IMeasurements[][];
+  public customerId: string = "";
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private orderService: OrderService,
+    private customerService: CustomerService
+  ) { }
 
-  ngOnInit(): void {
-    const data = [
-      {name: 'length', size: '20', amount: 1234},
-      {name: 'width', size: '40', amount: 1834},
-      {name: 'width', size: '40', amount: 1834},
-      {name: 'width', size: '40', amount: 1834},
-      {name: 'width', size: '40', amount: 1834},
-      {name: 'width', size: '40', amount: 1834}
-    ];
-    this.measurementsData = data;
+  ngOnInit(): void { }
+
+  onConfirmCustomerId(customerId: string): void {
+    console.log(customerId);
+  }
+
+  onSaveOrder(): void {
+    const order: Order = new Order();
+    this.customerService.getCustomer(this.customerId).subscribe((response: Customer) => {
+      order.customer = response;
+      order.measurements = this.measurementsData;
+      order.estimatedDeliveryDate = new Date();
+      order.totalAmount = _.sumBy(this.measurementsData, 'amount');
+      this.orderService.addOrder(order).subscribe((response: IOrder) => {
+        console.log(response);
+      });
+    });
   }
 
   toggleSelection(chip: MatChip): void {
@@ -62,6 +85,7 @@ export class AddOrderComponent implements OnInit {
   }
 
   onOpenOrder(dressType: string): void {
+    this.initializeDefaultItemMeasurements(dressType);
     const dialogRef = this.dialog.open(AddOrderModalComponent, {
       width: '750px',
       restoreFocus: false,
@@ -69,11 +93,32 @@ export class AddOrderComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(dressType);
-      console.log(result);
       this.measurementsData = result;
-      console.log(this.measurementsData);
+      this.measurementsDataChunks = _.chunk(this.measurementsData, Math.ceil(this.measurementsData.length / 2));
     });
+  }
+
+  initializeDefaultItemMeasurements(dressType: string): void {
+    switch (dressType) {
+      case KURTI: {
+        this.measurementsData = this.measurementsData || kurtiDefaultMeasurements;
+        break;
+      }
+      case SALWAR: {
+        this.measurementsData = this.measurementsData || salwarDefaultMeasurements;
+        break;
+      }
+      case SHIRT: {
+        this.measurementsData = this.measurementsData || shirtDefaultMeasurements;
+        break;
+      }
+      case PANT: {
+        this.measurementsData = this.measurementsData || pantDefaultMeasurements;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   }
 }

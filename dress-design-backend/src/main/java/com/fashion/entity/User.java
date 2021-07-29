@@ -8,6 +8,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -40,5 +42,10 @@ public class User extends BaseEntity implements Serializable {
 
 	@Column(name = "PHONE", nullable = false)
 	private String phone;
+	
+	@Column(name = "IMAGE_FILE_PATH")
+	private String imageFilePath;
+	
+	private transient MultipartFile file;
 
 }

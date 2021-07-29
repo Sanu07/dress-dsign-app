@@ -37,9 +37,9 @@ public class CustomerQueryController {
 		return customerService.getCustomerById(uuid);
 	}
 	
-	@PostMapping("/mongo")
-	public Customer saveCustomer(@RequestBody Customer customer) {
-		Customer savedCust = custDao.save(customer).block();
-		return savedCust;
+	@GetMapping("/customerId/{customerId}")
+	public Mono<Customer> getCustomerByCustomerId(@PathVariable String customerId) {
+		return customerService.getCustomerByCustomerId(customerId);
 	}
+	
 }

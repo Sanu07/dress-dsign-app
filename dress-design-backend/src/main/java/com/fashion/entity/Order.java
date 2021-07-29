@@ -1,7 +1,7 @@
 package com.fashion.entity;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -61,7 +61,7 @@ public class Order extends BaseEntity{
 
 	@Convert(converter = MeasurementsConverter.class)
 	@Column(name = "MEASUREMENTS")
-	private Map<String, Measurements> measurements;
+	private List<Measurements> measurements;
 	
 	@Column(name = "TOTAL_AMOUNT")
 	private Double totalAmount;

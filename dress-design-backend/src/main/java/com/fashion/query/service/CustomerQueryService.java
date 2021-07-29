@@ -14,6 +14,8 @@ public interface CustomerQueryService {
 
 	public Mono<Customer> getCustomerById(String customerId);
 	
+	public Mono<Customer> getCustomerByCustomerId(String customerId);
+	
 	public Mono<Customer> updateCustomer(Customer customer);
 	
 	public Mono<Customer> updateCustomerWithOrder(Order order);

@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup
+  profileImage: File;
 
   constructor() { }
 
@@ -28,5 +29,10 @@ export class SignupComponent implements OnInit {
       })
     });
   }
+
+  onSelectFile(event) {
+    this.profileImage = event.target.files[0];
+  }
+
 
 }

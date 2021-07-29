@@ -1,7 +1,5 @@
 package com.fashion.query.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,27 +7,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fashion.dto.Order;
-import com.fashion.query.service.OrderQueryService;
+import com.fashion.dto.Feedback;
+import com.fashion.query.service.FeedbackQueryService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("orders")
-@CrossOrigin("*")
-public class OrdersQueryController {
+@RequestMapping("/feedbacks")
+@CrossOrigin(origins = "*")
+public class FeedbackQueryController {
 
 	@Autowired
-	private OrderQueryService orderService;
-	
+	FeedbackQueryService feedbackService;
+
 	@GetMapping
-	public Flux<Order> getAllOrders() {
-		return orderService.getAllOrders();
+	public Flux<Feedback> getAllCustomers() {
+		return feedbackService.getAllFeedbacks();
 	}
-	
+
 	@GetMapping("/{uuid}")
-	public Mono<Order> getOrderById(@PathVariable String uuid) {
-		return orderService.getOrderById(uuid);
+	public Mono<Feedback> getCustomerById(@PathVariable String uuid) {
+		return feedbackService.getFeedbackById(uuid);
 	}
+
 }

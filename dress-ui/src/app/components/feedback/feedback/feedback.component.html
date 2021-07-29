@@ -1,0 +1,27 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+        *ngFor="let feedback of feedbacks; trackBy: trackById">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="faded-small">
+                Order Id : {{feedback.orderId}}
+            </mat-panel-title>
+            <mat-panel-description>
+                <span *ngFor="let num of [1, 2, 3, 4, 5];">
+                    <mat-icon *ngIf="num <= feedback.rating" color="primary">star</mat-icon>
+                    <mat-icon *ngIf="num > feedback.rating" color="primary">star_outline</mat-icon>
+                </span>
+                <div class="faded-small" fxFlex fxLayout fxLayoutAlign="flex-end">{{feedback.createdAt | date:'E d LLL
+                    yyyy'}}
+                </div>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+            <div fxFlex="30" class="faded-small">
+                <p>Customer Id: {{feedback.customerId}}</p>
+            </div>
+            <div fxFlex="70" class="faded-small">
+                <p>{{feedback.description}}</p>
+            </div>
+        </ng-template>
+    </mat-expansion-panel>
+</mat-accordion>
