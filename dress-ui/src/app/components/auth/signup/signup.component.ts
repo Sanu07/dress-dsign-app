@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { IUser } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,28 +13,34 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup
   profileImage: File;
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
-    this.signupForm = new FormGroup({
-      name: new FormControl('', {
-        validators: [Validators.required]
-      }),
-      email: new FormControl('', {
-        validators: [Validators.email]
-      }),
-      phone: new FormControl('', {
-        validators: [Validators.required, Validators.pattern('^\d{10}$')]
-      }),
-      password: new FormControl('', {
-        validators: [Validators.required]
-      })
+    this.signupForm = this.formBuilder.group({
+      fullName: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      password: ['', Validators.required],
+      email: ['', Validators.email]
     });
   }
 
-  onSelectFile(event) {
-    this.profileImage = event.target.files[0];
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+    if (file) {
+      // this.fileName = file.name;
+      this.profileImage = file;
+    }
   }
 
+  onRegister() {
+    const user: IUser = this.signupForm.value;
+    // user.file = this.profileImage;
+    this.userService.addUser(user, this.profileImage).subscribe((user: IUser) => {
+      console.log(user);
+    });
+  }
 
 }

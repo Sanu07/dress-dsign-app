@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,6 +47,7 @@ public class User extends BaseEntity implements Serializable {
 	@Column(name = "IMAGE_FILE_PATH")
 	private String imageFilePath;
 	
-	private transient MultipartFile file;
+	@Transient
+	private MultipartFile file;
 
 }

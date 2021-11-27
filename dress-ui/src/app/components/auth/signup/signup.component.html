@@ -1,24 +1,27 @@
-<mat-form-field class="example-full-width">
-    <mat-label>Name</mat-label>
-    <input type="text" matInput placeholder="Name" value="" [(ngModel)]="name">
-    <mat-icon matSuffix>person</mat-icon>
-</mat-form-field>
-<mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input type="email" matInput placeholder="Email" value="" [(ngModel)]="email">
-    <mat-icon matSuffix>email</mat-icon>
-</mat-form-field>
-<mat-form-field class="example-full-width">
-    <mat-label>Phone</mat-label>
-    <input type="text" matInput placeholder="Phone" [(ngModel)]="phone">
-    <mat-icon matSuffix>phone</mat-icon>
-</mat-form-field>
-<mat-form-field class="example-full-width">
-    <mat-label>Password</mat-label>
-    <input type="password" matInput placeholder="Password" [(ngModel)]="password">
-    <mat-icon matSuffix>vpn_key</mat-icon>
-</mat-form-field>
-<div>
-    <input type="file" name="image" accept="image/png, image/jpeg">
-</div>
-<button mat-button color="primary" (click)="register()">Register</button>
+<form [formGroup]="signupForm">
+    <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="Name" value="" formControlName="fullName">
+        <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Email" value="" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Phone</mat-label>
+        <input type="text" matInput placeholder="Phone" formControlName="phone">
+        <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password">
+        <mat-icon matSuffix>vpn_key</mat-icon>
+    </mat-form-field>
+    <input hidden type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+    <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+    <button mat-button color="primary" (click)="onRegister()">Register</button>
+</form>

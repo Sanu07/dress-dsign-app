@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
@@ -31,6 +32,7 @@ public class Feedback implements Serializable {
 
 	private Integer rating;
 	
+	@JsonProperty("feedback-status")
 	private boolean status;
 
 	private int version;

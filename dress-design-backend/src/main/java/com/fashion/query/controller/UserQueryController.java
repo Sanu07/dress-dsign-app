@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fashion.constants.AppConstants;
 import com.fashion.dto.User;
 import com.fashion.query.service.UserQueryService;
+import com.fashion.util.FilesUtil;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,7 +27,16 @@ public class UserQueryController {
 
 	@GetMapping
 	public Flux<User> getAllCustomers() {
-		return userService.getAllUsers();
+		return userService.getAllUsers().map(user -> {
+			if (user.getImageFilePath() != null) {
+				try {
+					user.setFile(FilesUtil.getImage(user.getImageFilePath()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return user;
+		});
 	}
 
 	@GetMapping("/{uuid}")

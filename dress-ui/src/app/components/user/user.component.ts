@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 import { IUser } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { EditUserComponent } from './modals/edit-user/edit-user.component';
@@ -13,10 +14,12 @@ export class UserComponent implements OnInit {
 
   public users: IUser[];
   public user: IUser = { id: '', fullName: '', email: '', phone: '', status: false, createdAt: '', updatedAt: '' };
+  public profileImage: any;
 
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +29,10 @@ export class UserComponent implements OnInit {
   getAllUsers(): void {
     this.userService.getAllUsers().subscribe((response: IUser[]) => {
       this.users = response;
-      this.user = this.users[0];
+      this.user = this.users[1];
+      let objectURL = 'data:image/png;base64,' + this.user.file;
+      this.profileImage = this.sanitizer.bypassSecurityTrustResourceUrl(objectURL);
+      console.log(this.user);
     });
   }
 

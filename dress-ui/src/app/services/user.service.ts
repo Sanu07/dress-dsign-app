@@ -20,4 +20,13 @@ export class UserService extends HelperService {
   updateUserDetails(user: IUser): Observable<IUser> {
     return this.http.put<IUser>(this.BASE_URL + 'users', user);
   }
+
+  addUser(user: IUser, profileImage: File): Observable<IUser> {
+    const formData = new FormData();
+    formData.append("file", profileImage);
+    formData.append('userData', new Blob([JSON.stringify(user)], {
+      type: "application/json"
+    }));
+    return this.http.post<IUser>(this.BASE_URL + 'users', formData);
+  }
 }
